@@ -53,7 +53,7 @@ public class WUSite extends Site {
 
     @Override
     protected Weather getSpecificWeather(JSONObject data) {
-        return null;
+        return new WUWeather(data);
     }
 
 }
