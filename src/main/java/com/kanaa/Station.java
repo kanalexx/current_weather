@@ -23,21 +23,14 @@ public class Station {
     }
 
     public boolean update() {
-        boolean noError = true;
+        boolean noError = false;
         errorMessage = "";
         try {
-            this.data = site.getWeatherData(cityName);
-            if (site.hasError()) {
-                errorMessage = site.getErrorMessage();
-                noError = false;
-            } else {
-                weather = site.getWeather();
-                updateFields();
-            }
-        } catch (IOException e) {
-            this.data = new JSONObject("{}");
+            weather = site.getWeather(cityName);
+            updateFields();
+            noError = true;
+        } catch (IOException | UserException e) {
             errorMessage = e.getMessage();
-            noError = false;
             log.error(errorMessage, e);
         }
         return noError;

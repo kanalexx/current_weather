@@ -33,19 +33,22 @@ public abstract class Site {
         return url;
     }
 
-    public JSONObject getWeatherData(String cityName) throws IOException {
+    public Weather getWeather(String cityName) throws IOException, UserException {
         String answer = connection.getAnswer(getUrlCity(cityName));
         data = new JSONObject(answer);
-        return data;
+        if (hasError()) {
+            throw new UserException(getErrorMessage());
+        }
+        return getSpecificWeather(data);
     }
 
     abstract String getUrlCity(String cityName);
-    abstract String getErrorMessage();
+    protected abstract String getErrorMessage();
     abstract String getSiteName();
-    abstract boolean hasError();
+    protected abstract boolean hasError();
     abstract double getTemp();
     abstract int getPressurePa();
 
-    abstract Weather getWeather();
+    protected abstract Weather getSpecificWeather(JSONObject data);
 
 }

@@ -17,14 +17,14 @@ public class WUSite extends Site {
     }
 
     @Override
-    public boolean hasError() {
+    protected boolean hasError() {
         return (data.length() == 0
                 || (data.has("response") && data.getJSONObject("response").has("error"))
                 || !data.has("current_observation"));
     }
 
     @Override
-    public String getErrorMessage() {
+    protected String getErrorMessage() {
         String errorMessage = "";
         if (data.has("response") && data.getJSONObject("response").has("error")) {
             JSONObject error = data.getJSONObject("response").getJSONObject("error");
@@ -52,7 +52,7 @@ public class WUSite extends Site {
     }
 
     @Override
-    public Weather getWeather() {
+    protected Weather getSpecificWeather(JSONObject data) {
         return null;
     }
 

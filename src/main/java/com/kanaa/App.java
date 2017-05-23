@@ -18,13 +18,14 @@ public class App
     private static final Logger log = Logger.getLogger(App.class);
 
     public static void main( String[] args ) throws IOException {
-/*        String nameFile = "log4j.properties";
+        String nameFile = "log4j.properties";
         PropertyConfigurator.configure(nameFile);
+        Connection conn = new Connection();
 
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         Map<String, Site> sites = new HashMap<>();
-        sites.put("OWM", new OWMSite());
-        sites.put("WU", new WUSite());
+        sites.put("OWM", new OWMSite(conn));
+        sites.put("WU", new WUSite(conn));
         StationManager stationManager = new StationManager(sites);
         String siteName;
         String cityName;
@@ -47,7 +48,7 @@ public class App
                 }
                 System.out.println("Для выхода введите \"Exit\".");
             }
-        } while(!isExit(cityName));*/
+        } while(!isExit(cityName));
     }
 
     private static boolean isExit(String inString) {

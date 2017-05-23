@@ -1,6 +1,8 @@
 package com.kanaa;
 
 
+import org.json.JSONObject;
+
 public class OWMSite extends Site {
 
     public OWMSite(Connection conn) {
@@ -16,12 +18,12 @@ public class OWMSite extends Site {
     }
 
     @Override
-    public boolean hasError() {
+    protected boolean hasError() {
         return (data.length() == 0 || (data.has("cod") && data.has("message")));
     }
 
     @Override
-    public String getErrorMessage() {
+    protected String getErrorMessage() {
         String errorMessage = "";
         if (data.has("cod") && data.has("message"))
             errorMessage = String.format("Ошибка: %s. %s.", data.getInt("cod"), data.getString("message"));
@@ -44,7 +46,7 @@ public class OWMSite extends Site {
     }
 
     @Override
-    public Weather getWeather() {
-        return new OWMWeather(data);
+    protected Weather getSpecificWeather(JSONObject data) {
+        return new OWMWeather(this.data);
     }
 }

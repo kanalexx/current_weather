@@ -1,6 +1,5 @@
 package com.kanaa;
 
-import org.json.JSONObject;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -50,40 +49,32 @@ public class OWMSiteTest {
 
     @Test
     public void getTemp() throws Exception {
-        site.getWeatherData("city");
+        site.getWeather("city");
         assertEquals(24, site.getTemp(), 1e-3);
     }
 
     @Test
     public void getPressurePa() throws Exception {
-        site.getWeatherData("city");
+        site.getWeather("city");
         assertEquals(1015, site.getPressurePa());
     }
 
     @Test
-    public void hasError() throws Exception {
-        when(conn.getAnswer(anyString())).thenReturn(OWM_INVALID_CITY_JSON);
-        //JSONObject dataEmpty = new JSONObject("{}");
-
-        site.getWeatherData("city");
-        assertTrue(site.hasError());
-        //assertTrue(site.hasError(dataEmpty));
+    public void getWeather() throws Exception {
+        Weather weather = site.getWeather("Moscow");
+        assertNotNull(weather);
     }
 
-    @Test
-    public void getErrorMessage() throws Exception {
+    @Test(expected = UserException.class)
+    public void getUserExceptionWhenInvalidCityName() throws Exception {
         when(conn.getAnswer(anyString())).thenReturn(OWM_INVALID_CITY_JSON);
-//        JSONObject dataEmpty = new JSONObject("{}");
-
-        site.getWeatherData("City");
-        assertFalse(site.getErrorMessage().isEmpty());
-//        assertTrue(site.getErrorMessage(dataEmpty).isEmpty());
+        site.getWeather("City");
     }
 
-    @Test
-    public void getWeatherData() throws Exception {
-        JSONObject data = site.getWeatherData("Moscow");
-        assertNotNull(data);
+    @Test(expected = UserException.class)
+    public void getUserExceptionWhenInvalidAppID() throws Exception {
+        when(conn.getAnswer(anyString())).thenReturn(OWM_INVALID_APPID_JSON);
+        site.getWeather("City");
     }
 
 }

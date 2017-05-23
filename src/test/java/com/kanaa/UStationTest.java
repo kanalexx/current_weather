@@ -43,46 +43,19 @@ public class UStationTest extends MyTest {
     }
 
     @Test
-    public void testInvalidCity() throws Exception {
-        Station invalidStation = new Station("M", site);
-
-        when(site.hasError()).thenReturn(true);
-        when(site.getErrorMessage()).thenReturn("Ошибка");
-
-        assertFalse(invalidStation.update());
-        String errorMessage = invalidStation.getErrorMessage();
-        assertNotEquals("", errorMessage);
-        verify(site, never()).getTemp();
-    }
-
-    @Test
-    public void testInvalidAppId() throws Exception {
-        Station invalidStation = new Station("Moscow", site);
-
-        when(site.hasError()).thenReturn(true);
-        when(site.getErrorMessage()).thenReturn("Ошибка");
-
-        assertFalse(invalidStation.update());
-        verify(site, never()).getTemp();
-    }
-
-    @Test
-    public void testExceptInUpdate() throws Exception {
-        when(site.getWeatherData(anyString())).thenThrow(new SocketException("Socket is closed."));
+    public void testSocketExceptiontInUpdate() throws Exception {
+        when(site.getWeather(anyString())).thenThrow(new SocketException("Socket is closed."));
 
         assertFalse(station.update());
-        assertNotEquals("", station.getErrorMessage());
-        verify(site, never()).getTemp();
+        assertEquals("Socket is closed.", station.getErrorMessage());
     }
 
     @Test
-    public void testInexactCity() throws Exception {
-        when(site.hasError()).thenReturn(true);
-        when(site.getErrorMessage()).thenReturn("Ошибка");
+    public void testUserExceptionInUpdate() throws Exception {
+        when(site.getWeather(anyString())).thenThrow(new UserException("Ошибка"));
 
         assertFalse(station.update());
-        assertNotEquals("", station.getErrorMessage());
-        verify(site, never()).getTemp();
+        assertEquals("Ошибка", station.getErrorMessage());
     }
 
 }
