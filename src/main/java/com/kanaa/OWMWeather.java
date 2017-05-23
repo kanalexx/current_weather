@@ -10,11 +10,11 @@ public class OWMWeather extends Weather{
 
     @Override
     public double getTemp() {
-        return weather.getJSONObject("main").getDouble("temp");
+        return data.getJSONObject("main").getDouble("temp");
     }
 
     @Override
     public int getPressurePa() {
-        return weather.getJSONObject("main").getInt("pressure");
+        return data.getJSONObject("main").getInt("pressure");
     }
 }

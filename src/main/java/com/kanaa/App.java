@@ -30,23 +30,24 @@ public class App
         String siteName;
         String cityName;
         do {
-            System.out.println("Введите сайт (OWM, WU):");
+            log.info("Введите сайт (OWM, WU):");
             siteName = br.readLine();
-            System.out.println("Введите название города:");
+            log.info("Введите название города:");
             cityName = br.readLine();
             if (!isExit(cityName)) {
                 try {
                     Station station = stationManager.getStationByCityName(cityName, siteName);
                     if (station.update()) {
-                        System.out.println("Источник: " + station.getSiteName());
-                        System.out.println("Температура в городе " + station.getCityName() + ": " + station.getTemp() + "\u00BAC");
+                        Weather weather = station.getWeather();
+                        log.info("Источник: " + station.getSiteName());
+                        log.info("Температура в городе " + station.getCityName() + ": " + weather.getTemp() + "\u00BAC");
                     } else {
-                        System.out.println(station.getErrorMessage());
+                        log.info(station.getErrorMessage());
                     }
                 } catch (Exception e) {
                     log.error("Ошибка: ",e);
                 }
-                System.out.println("Для выхода введите \"Exit\".");
+                log.info("Для выхода введите \"Exit\".");
             }
         } while(!isExit(cityName));
     }

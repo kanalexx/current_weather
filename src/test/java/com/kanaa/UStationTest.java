@@ -25,25 +25,7 @@ public class UStationTest extends MyTest {
     }
 
     @Test
-    public void getTemp() throws Exception {
-        when(site.getTemp()).thenReturn((double) 24);
-        station.update();
-        double temp = station.getTemp();
-        assertEquals(24, temp, 0.001);
-    }
-
-    @Test
-    public void getPressure() throws Exception {
-        when(site.getPressurePa()).thenReturn(1015);
-        station.update();
-        int pressurePa = station.getPressurePa();
-        int pressureMmHg = station.getPressureMmHg();
-        assertEquals(1015, pressurePa);
-        assertEquals(761, pressureMmHg);
-    }
-
-    @Test
-    public void testSocketExceptiontInUpdate() throws Exception {
+    public void testSocketExceptionInUpdate() throws Exception {
         when(site.getWeather(anyString())).thenThrow(new SocketException("Socket is closed."));
 
         assertFalse(station.update());

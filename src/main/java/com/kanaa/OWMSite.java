@@ -5,6 +5,8 @@ import org.json.JSONObject;
 
 public class OWMSite extends Site {
 
+    private static final String MESSAGE = "message";
+
     public OWMSite(Connection conn) {
         super(conn);
         url = "openweathermap.org";
@@ -19,30 +21,20 @@ public class OWMSite extends Site {
 
     @Override
     protected boolean hasError() {
-        return (data.length() == 0 || (data.has("cod") && data.has("message")));
+        return (data.length() == 0 || (data.has("cod") && data.has(MESSAGE)));
     }
 
     @Override
     protected String getErrorMessage() {
         String errorMessage = "";
-        if (data.has("cod") && data.has("message"))
-            errorMessage = String.format("Ошибка: %s. %s.", data.getInt("cod"), data.getString("message"));
+        if (data.has("cod") && data.has(MESSAGE))
+            errorMessage = String.format("Ошибка: %s. %s.", data.getInt("cod"), data.getString(MESSAGE));
         return errorMessage;
     }
 
     @Override
     public String getSiteName() {
         return "Weather API - OpenWeatherMap (https://openweathermap.org)";
-    }
-
-    @Override
-    public double getTemp() {
-        return data.getJSONObject("main").getDouble("temp");
-    }
-
-    @Override
-    public int getPressurePa() {
-        return data.getJSONObject("main").getInt("pressure");
     }
 
     @Override

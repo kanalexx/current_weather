@@ -4,6 +4,9 @@ import org.json.JSONObject;
 
 public class WUSite extends Site {
 
+    private static final String RESPONSE = "response";
+    private static final String ERROR = "error";
+
     public WUSite(Connection conn) {
         super(conn);
         url = "wunderground.com";
@@ -19,18 +22,18 @@ public class WUSite extends Site {
     @Override
     protected boolean hasError() {
         return (data.length() == 0
-                || (data.has("response") && data.getJSONObject("response").has("error"))
+                || (data.has(RESPONSE) && data.getJSONObject(RESPONSE).has(ERROR))
                 || !data.has("current_observation"));
     }
 
     @Override
     protected String getErrorMessage() {
         String errorMessage = "";
-        if (data.has("response") && data.getJSONObject("response").has("error")) {
-            JSONObject error = data.getJSONObject("response").getJSONObject("error");
+        if (data.has(RESPONSE) && data.getJSONObject(RESPONSE).has(ERROR)) {
+            JSONObject error = data.getJSONObject(RESPONSE).getJSONObject(ERROR);
             errorMessage = String.format(
                     "Ошибка: %s. %s.", error.getString("type"), error.getString("description"));
-        } else if (data.has("response") && (data.getJSONObject("response").has("results"))) {
+        } else if (data.has(RESPONSE) && (data.getJSONObject(RESPONSE).has("results"))) {
             errorMessage = "Существует несколько городов с таким названием. Укажите страну.";
         }
         return errorMessage;
@@ -39,16 +42,6 @@ public class WUSite extends Site {
     @Override
     public String getSiteName() {
         return "Weather API - Weather Underground (https://www.wunderground.com)";
-    }
-
-    @Override
-    public double getTemp() {
-        return data.getJSONObject("current_observation").getDouble("temp_c");
-    }
-
-    @Override
-    public int getPressurePa() {
-        return data.getJSONObject("current_observation").getInt("pressure_mb");
     }
 
     @Override

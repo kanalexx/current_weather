@@ -10,11 +10,11 @@ public class WUWeather extends Weather {
 
     @Override
     public double getTemp() {
-        return weather.getJSONObject("current_observation").getDouble("temp_c");
+        return data.getJSONObject("current_observation").getDouble("temp_c");
     }
 
     @Override
     public int getPressurePa() {
-        return weather.getJSONObject("current_observation").getInt("pressure_mb");
+        return data.getJSONObject("current_observation").getInt("pressure_mb");
     }
 }

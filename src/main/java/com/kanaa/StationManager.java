@@ -43,11 +43,11 @@ public class StationManager {
         this.sites = sites;
     }
 
-    public Station getStationByCityName(String cityName) {
+    public Station getStationByCityName(String cityName) throws UserException {
 		return getStationByCityName(cityName, "");
 	}
 
-	public Station getStationByCityName(String cityName, String siteName) {
+	public Station getStationByCityName(String cityName, String siteName) throws UserException {
         Site site = getSite(siteName);
         ResourceKey resourceKey = new ResourceKey(cityName, site);
         Station station = stationCache.get(resourceKey);
@@ -58,9 +58,9 @@ public class StationManager {
 		return station;
 	}
 
-    private Site getSite(String siteName) throws IllegalArgumentException {
+    private Site getSite(String siteName) throws UserException {
         if (sites.isEmpty()) {
-            throw new IllegalArgumentException("Список сайтов пуст.");
+            throw new UserException("Список сайтов пуст.");
         }
         Site site;
         if (siteName.isEmpty()) {
@@ -69,7 +69,7 @@ public class StationManager {
         }
         site = sites.get(siteName);
         if (site == null) {
-            throw new IllegalArgumentException("Неизвестный сайт.");
+            throw new UserException("Неизвестный сайт.");
         }
         return site;
     }

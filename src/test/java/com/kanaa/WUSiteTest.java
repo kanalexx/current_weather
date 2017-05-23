@@ -35,18 +35,6 @@ public class WUSiteTest {
         assertTrue(m.matches());
     }
 
-    @Test
-    public void getTemp() throws Exception {
-        site.getWeather("city");
-        assertEquals(20.7, site.getTemp(), 1e-3);
-    }
-
-    @Test
-    public void getPressurePa() throws Exception {
-        site.getWeather("city");
-        assertEquals(1004, site.getPressurePa());
-    }
-
     @Test(expected = UserException.class)
     public void hasErrorWhenInexactCity() throws Exception {
         when(conn.getAnswer(anyString())).thenReturn(WU_INEXACT_CITY_JSON);

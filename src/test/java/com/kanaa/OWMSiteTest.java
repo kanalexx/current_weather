@@ -48,18 +48,6 @@ public class OWMSiteTest {
     }
 
     @Test
-    public void getTemp() throws Exception {
-        site.getWeather("city");
-        assertEquals(24, site.getTemp(), 1e-3);
-    }
-
-    @Test
-    public void getPressurePa() throws Exception {
-        site.getWeather("city");
-        assertEquals(1015, site.getPressurePa());
-    }
-
-    @Test
     public void getWeather() throws Exception {
         Weather weather = site.getWeather("Moscow");
         assertNotNull(weather);

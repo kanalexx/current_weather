@@ -46,8 +46,6 @@ public abstract class Site {
     protected abstract String getErrorMessage();
     abstract String getSiteName();
     protected abstract boolean hasError();
-    abstract double getTemp();
-    abstract int getPressurePa();
 
     protected abstract Weather getSpecificWeather(JSONObject data);
 

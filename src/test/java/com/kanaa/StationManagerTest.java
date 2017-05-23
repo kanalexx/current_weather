@@ -65,7 +65,7 @@ public class StationManagerTest {
 	/**
 	 * Ожидается исключение: Неизвестный сайт.
 	 */
-	@Test(expected = IllegalArgumentException.class)
+	@Test(expected = UserException.class)
 	public void testGetStationWithInvalidSite() throws Exception {
 		manager.getStationByCityName("Moscow", "ERROR");
 	}
@@ -73,7 +73,7 @@ public class StationManagerTest {
     /**
      * Ожидается исключение: Список сайтов пуст.
      */
-    @Test(expected = IllegalArgumentException.class)
+    @Test(expected = UserException.class)
     public void testGetStationEmptySiteList() throws Exception {
         Map<String, Site> sites = new HashMap<>();
         StationManager manager = new StationManager(sites);

@@ -3,10 +3,10 @@ package com.kanaa;
 import org.json.JSONObject;
 
 public abstract class Weather {
-    JSONObject weather;
+    JSONObject data;
 
     public Weather(JSONObject dataWeather) {
-        this.weather = dataWeather;
+        this.data = dataWeather;
     }
 
     public abstract double getTemp();
