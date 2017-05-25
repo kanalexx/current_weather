@@ -3,7 +3,7 @@ package com.kanaa;
 import org.json.JSONObject;
 
 public abstract class Weather {
-    JSONObject data;
+    protected JSONObject data;
 
     public Weather(JSONObject dataWeather) {
         this.data = dataWeather;

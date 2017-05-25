@@ -20,14 +20,14 @@ public class WUSite extends Site {
     }
 
     @Override
-    protected boolean hasError() {
+    protected boolean hasError(JSONObject data) {
         return (data.length() == 0
                 || (data.has(RESPONSE) && data.getJSONObject(RESPONSE).has(ERROR))
                 || !data.has("current_observation"));
     }
 
     @Override
-    protected String getErrorMessage() {
+    protected String getErrorMessage(JSONObject data) {
         String errorMessage = "";
         if (data.has(RESPONSE) && data.getJSONObject(RESPONSE).has(ERROR)) {
             JSONObject error = data.getJSONObject(RESPONSE).getJSONObject(ERROR);

@@ -7,8 +7,7 @@ import java.io.IOException;
 public abstract class Site {
 
     protected String url;
-    protected Connection connection;
-    protected JSONObject data;
+    protected final Connection connection;
 
     public Site(Connection conn) {
         connection = conn;
@@ -35,18 +34,17 @@ public abstract class Site {
 
     public Weather getWeather(String cityName) throws IOException, UserException {
         String answer = connection.getAnswer(getUrlCity(cityName));
-        data = new JSONObject(answer);
-        if (hasError()) {
-            throw new UserException(getErrorMessage());
+        JSONObject data = new JSONObject(answer);
+        if (hasError(data)) {
+            throw new UserException(getErrorMessage(data));
         }
         return getSpecificWeather(data);
     }
 
     abstract String getUrlCity(String cityName);
-    protected abstract String getErrorMessage();
     abstract String getSiteName();
-    protected abstract boolean hasError();
-
+    protected abstract String getErrorMessage(JSONObject data);
+    protected abstract boolean hasError(JSONObject data);
     protected abstract Weather getSpecificWeather(JSONObject data);
 
 }

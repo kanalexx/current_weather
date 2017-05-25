@@ -20,12 +20,12 @@ public class OWMSite extends Site {
     }
 
     @Override
-    protected boolean hasError() {
-        return (data.length() == 0 || (data.has("cod") && data.has(MESSAGE)));
+    protected boolean hasError(JSONObject data) {
+        return data.length() == 0 || (data.has("cod") && data.has(MESSAGE));
     }
 
     @Override
-    protected String getErrorMessage() {
+    protected String getErrorMessage(JSONObject data) {
         String errorMessage = "";
         if (data.has("cod") && data.has(MESSAGE))
             errorMessage = String.format("Ошибка: %s. %s.", data.getInt("cod"), data.getString(MESSAGE));
@@ -39,6 +39,6 @@ public class OWMSite extends Site {
 
     @Override
     protected Weather getSpecificWeather(JSONObject data) {
-        return new OWMWeather(this.data);
+        return new OWMWeather(data);
     }
 }
