@@ -26,7 +26,7 @@ class StationManagerGTest {
      * При разных названиях города - разные станции.
      */
     @Test
-    void testGetStationByCityName() throws Exception {
+    void testGetStationByCityName() {
         Station stationM1 = manager.getStationByCityName("Moscow")
         Station stationM2 = manager.getStationByCityName("Moscow")
         Station stationS = manager.getStationByCityName("Saratov")
@@ -38,7 +38,7 @@ class StationManagerGTest {
      * Проверяет, что для разных сайтов с одним городом получаются разные станции.
      */
     @Test
-    void testGetStationWithSite() throws Exception {
+    void testGetStationWithSite() {
         Station stationDef = manager.getStationByCityName("Moscow")
         Station stationAnotherSite = manager.getStationByCityName("Moscow", "WU")
         assert !stationDef.is(stationAnotherSite)
@@ -48,7 +48,7 @@ class StationManagerGTest {
      * Проверяет общий статичный кэш для всех экземпляров StationManager.
      */
     @Test
-    void testGetStationFromCache() throws Exception {
+    void testGetStationFromCache() {
         StationManager manager2 = new StationManager(sites)
         Station owmStation1 = manager.getStationByCityName("Moscow")
         Station owmStation2 = manager2.getStationByCityName("Moscow")
@@ -64,15 +64,15 @@ class StationManagerGTest {
      * Ожидается исключение: Неизвестный сайт.
      */
     @Test(expected = UserException.class)
-    void testGetStationWithInvalidSite() throws Exception {
-        manager.getStationByCityName("Moscow", "ERROR");
+    void testGetStationWithInvalidSite() {
+        manager.getStationByCityName("Moscow", "ERROR")
     }
 
     /**
      * Ожидается исключение: Список сайтов пуст.
      */
     @Test(expected = UserException.class)
-    void testGetStationEmptySiteList() throws Exception {
+    void testGetStationEmptySiteList() {
         Map sites = [:]
         StationManager manager = new StationManager(sites)
         manager.getStationByCityName("Moscow")

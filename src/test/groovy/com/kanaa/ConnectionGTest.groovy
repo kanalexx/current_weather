@@ -63,7 +63,7 @@ class ConnectionGTest {
 
     @Test
     // Возможно лишний тест, т.к. повторяет предыдущий
-    void testInvalidCityRequest() throws Exception {
+    void testInvalidCityRequest() {
         when(connection.getInputStream(any(URLConnection.class)))
                 .thenReturn(getInputStream(OWM_INVALID_CITY_JSON))
         JSONObject data = getAnswerAsJSON(OWM_INVALID_CITY_URL)
@@ -74,19 +74,19 @@ class ConnectionGTest {
     // Тесты для wunderground.com
 
     @Test
-    void testGetAnswerWU() throws Exception {
+    void testGetAnswerWU() {
         when(connection.getInputStream(any(URLConnection.class)))
                 .thenReturn(getInputStream(WU_VALID_JSON))
-        JSONObject data = getAnswerAsJSON(ConstForTest.WU_VALID_URL)
+        JSONObject data = getAnswerAsJSON(WU_VALID_URL)
         assert data
         assert data.has("current_observation")
     }
 
     @Test
-    public void testInvalidCityRequestWU() throws Exception {
+    void testInvalidCityRequestWU() {
         when(connection.getInputStream(any(URLConnection.class)))
                 .thenReturn(getInputStream(WU_INVALID_CITY_JSON))
-        JSONObject data = getAnswerAsJSON(ConstForTest.WU_INVALID_CITY_URL)
+        JSONObject data = getAnswerAsJSON(WU_INVALID_CITY_URL)
         assert data
         assert data.getJSONObject("response").has("error")
         assert data.getJSONObject("response").getJSONObject("error").has("description")
@@ -94,10 +94,10 @@ class ConnectionGTest {
 
     @Test
     // Возможно лишний тест, т.к. повторяет предыдущий
-    void testInvalidAppIDRequestWU() throws Exception {
+    void testInvalidAppIDRequestWU() {
         when(connection.getInputStream(any(URLConnection.class)))
                 .thenReturn(getInputStream(WU_INVALID_APPID_JSON))
-        JSONObject data = getAnswerAsJSON(ConstForTest.WU_INVALID_APPID_URL)
+        JSONObject data = getAnswerAsJSON(WU_INVALID_APPID_URL)
         assert data
         assert data.getJSONObject("response").has("error")
         assert data.getJSONObject("response").getJSONObject("error").has("description")

@@ -6,11 +6,11 @@ import org.junit.runners.Suite
 @RunWith(Suite.class)
 @Suite.SuiteClasses([
     ConnectionGTest.class,
-    SiteTest.class,
-    OWMSiteTest.class,
-    WUSiteTest.class,
+    SiteGTest.class,
+    OWMSiteGTest.class,
+    WUSiteGTest.class,
 
-    UStationTest.class,
+    UStationGTest.class,
     StationManagerGTest.class,
 ])
 class AllUnitGTest {

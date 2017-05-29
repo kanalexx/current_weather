@@ -1,6 +1,5 @@
 package com.kanaa;
 
-import org.json.JSONObject;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
