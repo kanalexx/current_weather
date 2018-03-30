@@ -21,90 +21,90 @@ import java.nio.charset.StandardCharsets;
 
 public class ConnectionTest {
 
-    private Connection connection;
+  private Connection connection;
 
-    private JSONObject getAnswerAsJSON(String request) throws IOException {
-		String answer = connection.getAnswer(request);
-        return new JSONObject(answer);
-	}
+  private JSONObject getAnswerAsJSON(String request) throws IOException {
+    String answer = connection.getAnswer(request);
+    return new JSONObject(answer);
+  }
 
-	private InputStream getInputStream(String inputString) {
-        return new ByteArrayInputStream(inputString.getBytes(StandardCharsets.UTF_8));
-    }
-	
-	// Тесты для openweathermap.org
+  private InputStream getInputStream(String inputString) {
+    return new ByteArrayInputStream(inputString.getBytes(StandardCharsets.UTF_8));
+  }
 
-    @Before
-    public void setUp() throws Exception {
-        connection = mock(Connection.class);
-        when(connection.getAnswer(anyString())).thenCallRealMethod();
-    }
+  // Тесты для openweathermap.org
 
-    @Test
-    public void testGetAnswer() throws Exception {
-        when(connection.getInputStream(any(URLConnection.class)))
-                .thenReturn(getInputStream(OWM_VALID_JSON));
-        String answer = connection.getAnswer(OWM_VALID_URL);
-        JSONObject data = new JSONObject(answer);
-        assertNotNull(data);
-        assertTrue(data.has("main"));
-    }
-	
-	@Test
-	public void testEmptyRequest() throws Exception {
-		String answer = connection.getAnswer("");
-		assertEquals("", answer);
-	}
-	
-	@Test
-    public void testInvalidAppIDRequest() throws Exception {
-        when(connection.getInputStream(any(URLConnection.class)))
-                .thenReturn(getInputStream(OWM_INVALID_APPID_JSON));
-        JSONObject data = getAnswerAsJSON(OWM_INVALID_APPID_URL);
-        assertNotNull(data);
-        assertTrue(data.has("cod") && data.has("message"));
-    }
+  @Before
+  public void setUp() throws Exception {
+    connection = mock(Connection.class);
+    when(connection.getAnswer(anyString())).thenCallRealMethod();
+  }
 
-    @Test
-    // Возможно лишний тест, т.к. повторяет предыдущий
-    public void testInvalidCityRequest() throws Exception {
-        when(connection.getInputStream(any(URLConnection.class)))
-                .thenReturn(getInputStream(OWM_INVALID_CITY_JSON));
-        JSONObject data = getAnswerAsJSON(OWM_INVALID_CITY_URL);
-        assertNotNull(data);
-        assertTrue(data.has("cod") && data.has("message"));
-    }
+  @Test
+  public void testGetAnswer() throws Exception {
+    when(connection.getInputStream(any(URLConnection.class)))
+        .thenReturn(getInputStream(OWM_VALID_JSON));
+    String answer = connection.getAnswer(OWM_VALID_URL);
+    JSONObject data = new JSONObject(answer);
+    assertNotNull(data);
+    assertTrue(data.has("main"));
+  }
 
-    // Тесты для wunderground.com
+  @Test
+  public void testEmptyRequest() throws Exception {
+    String answer = connection.getAnswer("");
+    assertEquals("", answer);
+  }
 
-    @Test
-	public void testGetAnswerWU() throws Exception {
-        when(connection.getInputStream(any(URLConnection.class)))
-                .thenReturn(getInputStream(WU_VALID_JSON));
-        JSONObject data = getAnswerAsJSON(WU_VALID_URL);
-        assertNotNull(data);
-        assertTrue(data.has("current_observation"));
-	}
-    
-    @Test
-    public void testInvalidCityRequestWU() throws Exception {
-        when(connection.getInputStream(any(URLConnection.class)))
-                .thenReturn(getInputStream(WU_INVALID_CITY_JSON));
-        JSONObject data = getAnswerAsJSON(WU_INVALID_CITY_URL);
-        assertNotNull(data);
-        assertTrue(data.getJSONObject("response").has("error"));
-        assertTrue(data.getJSONObject("response").getJSONObject("error").has("description"));
-    }
-    
-    @Test
-    // Возможно лишний тест, т.к. повторяет предыдущий
-    public void testInvalidAppIDRequestWU() throws Exception {
-        when(connection.getInputStream(any(URLConnection.class)))
-                .thenReturn(getInputStream(WU_INVALID_APPID_JSON));
-        JSONObject data = getAnswerAsJSON(WU_INVALID_APPID_URL);
-        assertNotNull(data);
-        assertTrue(data.getJSONObject("response").has("error"));
-        assertTrue(data.getJSONObject("response").getJSONObject("error").has("description"));
-    }
+  @Test
+  public void testInvalidAppIDRequest() throws Exception {
+    when(connection.getInputStream(any(URLConnection.class)))
+        .thenReturn(getInputStream(OWM_INVALID_APPID_JSON));
+    JSONObject data = getAnswerAsJSON(OWM_INVALID_APPID_URL);
+    assertNotNull(data);
+    assertTrue(data.has("cod") && data.has("message"));
+  }
+
+  @Test
+  // Возможно лишний тест, т.к. повторяет предыдущий
+  public void testInvalidCityRequest() throws Exception {
+    when(connection.getInputStream(any(URLConnection.class)))
+        .thenReturn(getInputStream(OWM_INVALID_CITY_JSON));
+    JSONObject data = getAnswerAsJSON(OWM_INVALID_CITY_URL);
+    assertNotNull(data);
+    assertTrue(data.has("cod") && data.has("message"));
+  }
+
+  // Тесты для wunderground.com
+
+  @Test
+  public void testGetAnswerWU() throws Exception {
+    when(connection.getInputStream(any(URLConnection.class)))
+        .thenReturn(getInputStream(WU_VALID_JSON));
+    JSONObject data = getAnswerAsJSON(WU_VALID_URL);
+    assertNotNull(data);
+    assertTrue(data.has("current_observation"));
+  }
+
+  @Test
+  public void testInvalidCityRequestWU() throws Exception {
+    when(connection.getInputStream(any(URLConnection.class)))
+        .thenReturn(getInputStream(WU_INVALID_CITY_JSON));
+    JSONObject data = getAnswerAsJSON(WU_INVALID_CITY_URL);
+    assertNotNull(data);
+    assertTrue(data.getJSONObject("response").has("error"));
+    assertTrue(data.getJSONObject("response").getJSONObject("error").has("description"));
+  }
+
+  @Test
+  // Возможно лишний тест, т.к. повторяет предыдущий
+  public void testInvalidAppIDRequestWU() throws Exception {
+    when(connection.getInputStream(any(URLConnection.class)))
+        .thenReturn(getInputStream(WU_INVALID_APPID_JSON));
+    JSONObject data = getAnswerAsJSON(WU_INVALID_APPID_URL);
+    assertNotNull(data);
+    assertTrue(data.getJSONObject("response").has("error"));
+    assertTrue(data.getJSONObject("response").getJSONObject("error").has("description"));
+  }
 
 }

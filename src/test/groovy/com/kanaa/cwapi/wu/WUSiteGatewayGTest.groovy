@@ -13,40 +13,40 @@ import static org.mockito.Mockito.when
 
 class WUSiteGatewayGTest {
 
-    private static final String cityName = 'City'
+  private static final String cityName = 'City'
 
-    private SiteGateway site
-    private Connection conn = mock Connection.class
+  private SiteGateway site
+  private Connection conn = mock Connection.class
 
-    @Before
-    void setUp() {
-        when(conn.getAnswer(anyString())).thenReturn(WU_VALID_JSON)
-        site = new WUSiteGateway(conn)
-    }
+  @Before
+  void setUp() {
+    when(conn.getAnswer(anyString())).thenReturn(WU_VALID_JSON)
+    site = new WUSiteGateway(conn)
+  }
 
-    @Test
-    void getUrlCity() {
-        def url = site.getUrlCity(cityName)
-        // общий формат
-        assert url ==~ "http://api.wunderground.com/api/\\w{16}/conditions/q/${cityName}.json"
-    }
+  @Test
+  void getUrlCity() {
+    def url = site.getUrlCity(cityName)
+    // общий формат
+    assert url ==~ "http://api.wunderground.com/api/\\w{16}/conditions/q/${cityName}.json"
+  }
 
-    @Test(expected = UserException.class)
-    void hasErrorWhenInexactCity() {
-        when(conn.getAnswer(anyString())).thenReturn(WU_INEXACT_CITY_JSON)
-        site.getWeather(cityName)
-    }
+  @Test(expected = UserException.class)
+  void hasErrorWhenInexactCity() {
+    when(conn.getAnswer(anyString())).thenReturn(WU_INEXACT_CITY_JSON)
+    site.getWeather(cityName)
+  }
 
-    @Test(expected = UserException.class)
-    void getUserExceptionWhenInvalidCityName() {
-        when(conn.getAnswer(anyString())).thenReturn(WU_INVALID_CITY_JSON)
-        site.getWeather(cityName)
-    }
+  @Test(expected = UserException.class)
+  void getUserExceptionWhenInvalidCityName() {
+    when(conn.getAnswer(anyString())).thenReturn(WU_INVALID_CITY_JSON)
+    site.getWeather(cityName)
+  }
 
-    @Test(expected = UserException.class)
-    void getUserExceptionWhenInvalidAppID() {
-        when(conn.getAnswer(anyString())).thenReturn(WU_INVALID_APPID_JSON)
-        site.getWeather(cityName)
-    }
+  @Test(expected = UserException.class)
+  void getUserExceptionWhenInvalidAppID() {
+    when(conn.getAnswer(anyString())).thenReturn(WU_INVALID_APPID_JSON)
+    site.getWeather(cityName)
+  }
 
 }

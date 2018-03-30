@@ -8,14 +8,14 @@ import org.junit.runners.Suite;
 
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
-        ConnectionTest.class,
+    ConnectionTest.class,
 
-        SiteGatewayTest.class,
-        OWMSiteGatewayTest.class,
-        WUSiteGatewayTest.class,
+    SiteGatewayTest.class,
+    OWMSiteGatewayTest.class,
+    WUSiteGatewayTest.class,
 
-        UStationTest.class,
-        StationManagerTest.class
+    UStationTest.class,
+    StationManagerTest.class
 })
 public class AllUnitTests {
 }

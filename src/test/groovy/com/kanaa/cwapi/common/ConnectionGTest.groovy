@@ -17,90 +17,90 @@ import static org.mockito.Mockito.when
  * @author Alexander Kanunnikov
  */
 class ConnectionGTest {
-    private Connection connection
+  private Connection connection
 
-    private JSONObject getAnswerAsJSON(String request) {
-        String answer = connection.getAnswer(request)
-        new JSONObject(answer)
-    }
+  private JSONObject getAnswerAsJSON(String request) {
+    String answer = connection.getAnswer(request)
+    new JSONObject(answer)
+  }
 
-    private InputStream getInputStream(String inputString) {
-        new ByteArrayInputStream(inputString.getBytes(StandardCharsets.UTF_8))
-    }
+  private InputStream getInputStream(String inputString) {
+    new ByteArrayInputStream(inputString.getBytes(StandardCharsets.UTF_8))
+  }
 
-    @Before
-    void setUp() {
-        connection = mock Connection.class
-        when(connection.getAnswer(anyString())).thenCallRealMethod()
-    }
+  @Before
+  void setUp() {
+    connection = mock Connection.class
+    when(connection.getAnswer(anyString())).thenCallRealMethod()
+  }
 
-    // Тесты для openweathermap.org
+  // Тесты для openweathermap.org
 
-    @Test
-    void testGetAnswer() {
-        when(connection.getInputStream(any(URLConnection.class)))
-                .thenReturn(getInputStream(OWM_VALID_JSON))
-        def answer = connection.getAnswer(OWM_VALID_URL)
-        JSONObject data = new JSONObject(answer)
-        assert data
-        assert data.has("main")
-    }
+  @Test
+  void testGetAnswer() {
+    when(connection.getInputStream(any(URLConnection.class)))
+        .thenReturn(getInputStream(OWM_VALID_JSON))
+    def answer = connection.getAnswer(OWM_VALID_URL)
+    JSONObject data = new JSONObject(answer)
+    assert data
+    assert data.has("main")
+  }
 
-    @Test
-    void testEmptyRequest() {
-        def answer = connection.getAnswer('')
-        assert answer == ''
-    }
+  @Test
+  void testEmptyRequest() {
+    def answer = connection.getAnswer('')
+    assert answer == ''
+  }
 
-    @Test
-    void testInvalidAppIDRequest() {
-        when(connection.getInputStream(any(URLConnection.class)))
-                .thenReturn(getInputStream(OWM_INVALID_APPID_JSON))
-        JSONObject data = getAnswerAsJSON(OWM_INVALID_APPID_URL)
-        assert data
-        assert data.has('cod') && data.has('message')
-    }
+  @Test
+  void testInvalidAppIDRequest() {
+    when(connection.getInputStream(any(URLConnection.class)))
+        .thenReturn(getInputStream(OWM_INVALID_APPID_JSON))
+    JSONObject data = getAnswerAsJSON(OWM_INVALID_APPID_URL)
+    assert data
+    assert data.has('cod') && data.has('message')
+  }
 
-    @Test
-    // Возможно лишний тест, т.к. повторяет предыдущий
-    void testInvalidCityRequest() {
-        when(connection.getInputStream(any(URLConnection.class)))
-                .thenReturn(getInputStream(OWM_INVALID_CITY_JSON))
-        JSONObject data = getAnswerAsJSON(OWM_INVALID_CITY_URL)
-        assert data
-        assert data.has("cod") && data.has("message")
-    }
+  @Test
+  // Возможно лишний тест, т.к. повторяет предыдущий
+  void testInvalidCityRequest() {
+    when(connection.getInputStream(any(URLConnection.class)))
+        .thenReturn(getInputStream(OWM_INVALID_CITY_JSON))
+    JSONObject data = getAnswerAsJSON(OWM_INVALID_CITY_URL)
+    assert data
+    assert data.has("cod") && data.has("message")
+  }
 
-    // Тесты для wunderground.com
+  // Тесты для wunderground.com
 
-    @Test
-    void testGetAnswerWU() {
-        when(connection.getInputStream(any(URLConnection.class)))
-                .thenReturn(getInputStream(WU_VALID_JSON))
-        JSONObject data = getAnswerAsJSON(WU_VALID_URL)
-        assert data
-        assert data.has("current_observation")
-    }
+  @Test
+  void testGetAnswerWU() {
+    when(connection.getInputStream(any(URLConnection.class)))
+        .thenReturn(getInputStream(WU_VALID_JSON))
+    JSONObject data = getAnswerAsJSON(WU_VALID_URL)
+    assert data
+    assert data.has("current_observation")
+  }
 
-    @Test
-    void testInvalidCityRequestWU() {
-        when(connection.getInputStream(any(URLConnection.class)))
-                .thenReturn(getInputStream(WU_INVALID_CITY_JSON))
-        JSONObject data = getAnswerAsJSON(WU_INVALID_CITY_URL)
-        assert data
-        assert data.getJSONObject("response").has("error")
-        assert data.getJSONObject("response").getJSONObject("error").has("description")
-    }
+  @Test
+  void testInvalidCityRequestWU() {
+    when(connection.getInputStream(any(URLConnection.class)))
+        .thenReturn(getInputStream(WU_INVALID_CITY_JSON))
+    JSONObject data = getAnswerAsJSON(WU_INVALID_CITY_URL)
+    assert data
+    assert data.getJSONObject("response").has("error")
+    assert data.getJSONObject("response").getJSONObject("error").has("description")
+  }
 
-    @Test
-    // Возможно лишний тест, т.к. повторяет предыдущий
-    void testInvalidAppIDRequestWU() {
-        when(connection.getInputStream(any(URLConnection.class)))
-                .thenReturn(getInputStream(WU_INVALID_APPID_JSON))
-        JSONObject data = getAnswerAsJSON(WU_INVALID_APPID_URL)
-        assert data
-        assert data.getJSONObject("response").has("error")
-        assert data.getJSONObject("response").getJSONObject("error").has("description")
-    }
+  @Test
+  // Возможно лишний тест, т.к. повторяет предыдущий
+  void testInvalidAppIDRequestWU() {
+    when(connection.getInputStream(any(URLConnection.class)))
+        .thenReturn(getInputStream(WU_INVALID_APPID_JSON))
+    JSONObject data = getAnswerAsJSON(WU_INVALID_APPID_URL)
+    assert data
+    assert data.getJSONObject("response").has("error")
+    assert data.getJSONObject("response").getJSONObject("error").has("description")
+  }
 
 }
