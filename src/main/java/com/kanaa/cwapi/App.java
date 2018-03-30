@@ -1,8 +1,8 @@
 package com.kanaa.cwapi;
 
 import com.kanaa.cwapi.common.*;
-import com.kanaa.cwapi.owm.OWMSite;
-import com.kanaa.cwapi.wu.WUSite;
+import com.kanaa.cwapi.owm.OWMSiteGateway;
+import com.kanaa.cwapi.wu.WUSiteGateway;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 
@@ -26,9 +26,9 @@ public class App
         Connection conn = new Connection();
 
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        Map<String, Site> sites = new HashMap<>();
-        sites.put("OWM", new OWMSite(conn));
-        sites.put("WU", new WUSite(conn));
+        Map<String, SiteGateway> sites = new HashMap<>();
+        sites.put("OWM", new OWMSiteGateway(conn));
+        sites.put("WU", new WUSiteGateway(conn));
         StationManager stationManager = new StationManager(sites);
         String siteName;
         String cityName;

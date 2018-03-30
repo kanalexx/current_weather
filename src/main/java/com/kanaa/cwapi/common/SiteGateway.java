@@ -4,12 +4,15 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 
-public abstract class Site {
+/**
+ * Шлюз внешнего сайта
+ */
+public abstract class SiteGateway {
 
     protected String url;
     protected final Connection connection;
 
-    public Site(Connection conn) {
+    public SiteGateway(Connection conn) {
         connection = conn;
     }
 

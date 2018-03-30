@@ -11,12 +11,12 @@ import static org.mockito.Mockito.*;
 public class UStationTest extends MyTest {
 
     private Station station;
-    private Site site;
+    private SiteGateway siteGateway;
 
     @Before
     public void setUp() throws Exception {
-        site = mock(Site.class);
-        station = spy(new Station("Moscow", site));
+        siteGateway = mock(SiteGateway.class);
+        station = spy(new Station("Moscow", siteGateway));
     }
 
     @Test
@@ -26,7 +26,7 @@ public class UStationTest extends MyTest {
 
     @Test
     public void testSocketExceptionInUpdate() throws Exception {
-        when(site.getWeather(anyString())).thenThrow(new SocketException("Socket is closed."));
+        when(siteGateway.getWeather(anyString())).thenThrow(new SocketException("Socket is closed."));
 
         assertFalse(station.update());
         assertEquals("Socket is closed.", station.getErrorMessage());
@@ -34,7 +34,7 @@ public class UStationTest extends MyTest {
 
     @Test
     public void testUserExceptionInUpdate() throws Exception {
-        when(site.getWeather(anyString())).thenThrow(new UserException("Ошибка"));
+        when(siteGateway.getWeather(anyString())).thenThrow(new UserException("Ошибка"));
 
         assertFalse(station.update());
         assertEquals("Ошибка", station.getErrorMessage());

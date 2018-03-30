@@ -1,16 +1,19 @@
 package com.kanaa.cwapi.wu;
 
 import com.kanaa.cwapi.common.Connection;
-import com.kanaa.cwapi.common.Site;
+import com.kanaa.cwapi.common.SiteGateway;
 import com.kanaa.cwapi.common.Weather;
 import org.json.JSONObject;
 
-public class WUSite extends Site {
+/**
+ * Шлюз сайта WU.
+ */
+public class WUSiteGateway extends SiteGateway {
 
     private static final String RESPONSE = "response";
     private static final String ERROR = "error";
 
-    public WUSite(Connection conn) {
+    public WUSiteGateway(Connection conn) {
         super(conn);
         url = "wunderground.com";
     }

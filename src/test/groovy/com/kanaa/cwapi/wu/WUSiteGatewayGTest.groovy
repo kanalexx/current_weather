@@ -1,7 +1,7 @@
 package com.kanaa.cwapi.wu
 
 import com.kanaa.cwapi.common.Connection
-import com.kanaa.cwapi.common.Site
+import com.kanaa.cwapi.common.SiteGateway
 import com.kanaa.cwapi.common.UserException
 import org.junit.Before
 import org.junit.Test
@@ -11,17 +11,17 @@ import static org.mockito.Matchers.anyString
 import static org.mockito.Mockito.mock
 import static org.mockito.Mockito.when
 
-class WUSiteGTest {
+class WUSiteGatewayGTest {
 
     private static final String cityName = 'City'
 
-    private Site site
+    private SiteGateway site
     private Connection conn = mock Connection.class
 
     @Before
     void setUp() {
         when(conn.getAnswer(anyString())).thenReturn(WU_VALID_JSON)
-        site = new WUSite(conn)
+        site = new WUSiteGateway(conn)
     }
 
     @Test

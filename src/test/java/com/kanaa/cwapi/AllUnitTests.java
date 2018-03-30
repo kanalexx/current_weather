@@ -1,8 +1,8 @@
 package com.kanaa.cwapi;
 
 import com.kanaa.cwapi.common.*;
-import com.kanaa.cwapi.owm.OWMSiteTest;
-import com.kanaa.cwapi.wu.WUSiteTest;
+import com.kanaa.cwapi.owm.OWMSiteGatewayTest;
+import com.kanaa.cwapi.wu.WUSiteGatewayTest;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 
@@ -10,9 +10,9 @@ import org.junit.runners.Suite;
 @Suite.SuiteClasses({
         ConnectionTest.class,
 
-        SiteTest.class,
-        OWMSiteTest.class,
-        WUSiteTest.class,
+        SiteGatewayTest.class,
+        OWMSiteGatewayTest.class,
+        WUSiteGatewayTest.class,
 
         UStationTest.class,
         StationManagerTest.class

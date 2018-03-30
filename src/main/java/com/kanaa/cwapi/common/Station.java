@@ -13,20 +13,20 @@ public class Station {
     private static long WEATHER_DATA_ACTUAL_TIME = 7200000L;
 
     private String cityName;
-    private Site site;
+    private SiteGateway siteGateway;
     private String errorMessage = "";
     private Weather weather;
 
-    public Station(String cityName, Site site) {
+    public Station(String cityName, SiteGateway siteGateway) {
         this.cityName = cityName;
-        this.site = site;
+        this.siteGateway = siteGateway;
     }
 
     public boolean update() {
         boolean noError = false;
         errorMessage = "";
         try {
-            weather = site.getWeather(cityName);
+            weather = siteGateway.getWeather(cityName);
             noError = true;
         } catch (IOException | UserException e) {
             errorMessage = e.getMessage();
@@ -40,7 +40,7 @@ public class Station {
     }
 
     public String getSiteName() {
-        return site.getSiteName();
+        return siteGateway.getSiteName();
     }
 
     public String getCityName() {

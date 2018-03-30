@@ -2,15 +2,18 @@ package com.kanaa.cwapi.owm;
 
 
 import com.kanaa.cwapi.common.Connection;
-import com.kanaa.cwapi.common.Site;
+import com.kanaa.cwapi.common.SiteGateway;
 import com.kanaa.cwapi.common.Weather;
 import org.json.JSONObject;
 
-public class OWMSite extends Site {
+/**
+ * Шлюз сайта OWM.
+ */
+public class OWMSiteGateway extends SiteGateway {
 
     private static final String MESSAGE = "message";
 
-    public OWMSite(Connection conn) {
+    public OWMSiteGateway(Connection conn) {
         super(conn);
         url = "openweathermap.org";
     }

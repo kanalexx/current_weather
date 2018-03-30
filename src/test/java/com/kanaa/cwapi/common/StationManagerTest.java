@@ -12,13 +12,13 @@ import java.util.Map;
 public class StationManagerTest {
 
 	private StationManager manager;
-    private Map<String, Site> sites;
+    private Map<String, SiteGateway> sites;
 
 	@Before
 	public void setUp() throws Exception {
         sites = new HashMap<>();
-        sites.put("OWM", mock(Site.class));
-        sites.put("WU", mock(Site.class));
+        sites.put("OWM", mock(SiteGateway.class));
+        sites.put("WU", mock(SiteGateway.class));
 		manager = new StationManager(sites);
 	}
 
@@ -75,7 +75,7 @@ public class StationManagerTest {
      */
     @Test(expected = UserException.class)
     public void testGetStationEmptySiteList() throws Exception {
-        Map<String, Site> sites = new HashMap<>();
+        Map<String, SiteGateway> sites = new HashMap<>();
         StationManager manager = new StationManager(sites);
         manager.getStationByCityName("Moscow");
     }

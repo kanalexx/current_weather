@@ -15,8 +15,8 @@ class StationManagerGTest {
 
     @Before
     void setUp() throws Exception {
-        sites = [OWM : mock(Site.class),
-                 WU : mock(Site.class)]
+        sites = [OWM : mock(SiteGateway.class),
+                 WU : mock(SiteGateway.class)]
         manager = new StationManager(sites)
     }
 

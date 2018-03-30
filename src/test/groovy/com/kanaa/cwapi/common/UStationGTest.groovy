@@ -13,11 +13,11 @@ class UStationGTest extends MyTest {
     private static final cityName = 'city'
 
     private Station station
-    private Site site
+    private SiteGateway site
 
     @Before
     void setUp() {
-        site = mock Site.class
+        site = mock SiteGateway.class
         station = spy new Station(cityName, site)
     }
 

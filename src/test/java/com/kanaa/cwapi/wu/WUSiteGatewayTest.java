@@ -1,7 +1,7 @@
 package com.kanaa.cwapi.wu;
 
 import com.kanaa.cwapi.common.Connection;
-import com.kanaa.cwapi.common.Site;
+import com.kanaa.cwapi.common.SiteGateway;
 import com.kanaa.cwapi.common.UserException;
 import org.junit.Before;
 import org.junit.Test;
@@ -15,21 +15,21 @@ import static org.mockito.Matchers.anyString;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-public class WUSiteTest {
+public class WUSiteGatewayTest {
 
-    private Site site;
+    private SiteGateway siteGateway;
     private Connection conn = mock(Connection.class);
 
     @Before
     public void setUp() throws Exception {
         when(conn.getAnswer(anyString())).thenReturn(WU_VALID_JSON);
-        site = new WUSite(conn);
+        siteGateway = new WUSiteGateway(conn);
     }
 
     @Test
     public void getUrlCity() throws Exception {
         String cityName = "Moscow";
-        String url = site.getUrlCity(cityName);
+        String url = siteGateway.getUrlCity(cityName);
         Pattern p;
         Matcher m;
         // общий формат
@@ -41,19 +41,19 @@ public class WUSiteTest {
     @Test(expected = UserException.class)
     public void hasErrorWhenInexactCity() throws Exception {
         when(conn.getAnswer(anyString())).thenReturn(WU_INEXACT_CITY_JSON);
-        site.getWeather("city");
+        siteGateway.getWeather("city");
     }
 
     @Test(expected = UserException.class)
     public void getUserExceptionWhenInvalidCityName() throws Exception {
         when(conn.getAnswer(anyString())).thenReturn(WU_INVALID_CITY_JSON);
-        site.getWeather("city");
+        siteGateway.getWeather("city");
     }
 
     @Test(expected = UserException.class)
     public void getUserExceptionWhenInvalidAppID() throws Exception {
         when(conn.getAnswer(anyString())).thenReturn(WU_INVALID_APPID_JSON);
-        site.getWeather("City");
+        siteGateway.getWeather("City");
     }
 
 }
