@@ -46,6 +46,22 @@
           </execution>
         </executions>
       </plugin>
+      <plugin>
+        <groupId>org.liquibase</groupId>
+        <artifactId>liquibase-maven-plugin</artifactId>
+        <version>3.5.5</version>
+        <executions>
+          <execution>
+            <phase>process-resources</phase>
+            <configuration>
+              <propertyFile>src/main/liquibase/liquibase.properties</propertyFile>
+            </configuration>
+            <goals>
+              <goal>update</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
     </plugins>
   </build>
 
@@ -76,6 +92,16 @@
       <groupId>org.codehaus.groovy</groupId>
       <artifactId>groovy-all</artifactId>
       <version>${groovy.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.postgresql</groupId>
+      <artifactId>postgresql</artifactId>
+      <version>42.2.2</version>
+    </dependency>
+    <dependency>
+      <groupId>org.liquibase</groupId>
+      <artifactId>liquibase-core</artifactId>
+      <version>3.5.5</version>
     </dependency>
   </dependencies>
 </project>
