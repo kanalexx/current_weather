@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd">
+    <changeSet id="001-SiteInit" author="kanaa">
+        <insert tableName="SITE">
+            <column name="NAME" value="Weather API - OpenWeatherMap"/>
+            <column name="SHORT_NAME" value="OWM"/>
+            <column name="URL" value="https://openweathermap.org"/>
+            <column name="APPID" value="ce93f7bfb9ee94a56b6f0f36743b1227"/>
+            <column name="WEATHER_REQUEST" value="http://api.openweathermap.org/data/2.5/weather?units=metric&amp;q=%s&amp;APPID=%s"/>
+        </insert>
+        <insert tableName="SITE">
+            <column name="NAME" value="Weather API - Weather Underground"/>
+            <column name="SHORT_NAME" value="WU"/>
+            <column name="URL" value="https://www.wunderground.com"/>
+            <column name="APPID" value="bf926c867532af8d"/>
+            <column name="WEATHER_REQUEST" value="http://api.wunderground.com/api/%s/conditions/q/%s.json"/>
+        </insert>
+    </changeSet>
+</databaseChangeLog>
