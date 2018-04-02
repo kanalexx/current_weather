@@ -1,9 +1,8 @@
 package com.kanaa.cwapi.common;
 
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -17,11 +16,6 @@ public class Context {
 
   public Context() throws IOException {
     webConnection = new WebGateway();
-    try {
-      Class.forName("org.postgresql.Driver");
-    } catch (ClassNotFoundException e) {
-      log.error("Ошибка регистрации драйвера БД.", e);
-    }
     Properties properties;
     try {
       properties = getProperties();
@@ -29,9 +23,15 @@ public class Context {
       log.error("Ошибка чтения файла настроек.", e);
       throw e;
     }
+    String driver = properties.getProperty("driver");
     String url = properties.getProperty("url");
     String username = properties.getProperty("username");
     String password = properties.getProperty("password");
+    try {
+      Class.forName(driver);
+    } catch (ClassNotFoundException e) {
+      log.error("Ошибка регистрации драйвера БД.", e);
+    }
     try {
       dbConnection = DriverManager.getConnection(url, username, password);
     } catch (SQLException e) {
@@ -49,7 +49,7 @@ public class Context {
 
   public Properties getProperties() throws IOException {
     Properties props = new Properties();
-    try (InputStream in = Files.newInputStream(Paths.get("server.properties")))
+    try (InputStream in = new FileInputStream("server.properties"))
     {
       props.load(in);
     }
