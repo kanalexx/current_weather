@@ -18,7 +18,7 @@ public class Context {
       log.error("Ошибка регистрации драйвера БД.", e);
     }
     try {
-      dbConnection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/cw_db", "postgre", "password");
+      dbConnection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/cw_db", "postgres", "password");
     } catch (SQLException e) {
       log.error("Ошибка создания подключения к БД.", e);
     }
