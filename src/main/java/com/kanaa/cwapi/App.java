@@ -9,6 +9,9 @@ import org.apache.log4j.PropertyConfigurator;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -21,12 +24,12 @@ public class App {
   public static void main(String[] args) throws IOException {
     String nameFile = "log4j.properties";
     PropertyConfigurator.configure(nameFile);
-    WebGateway conn = new WebGateway();
+    Context ctx = new Context();
 
     BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     Map<String, SiteGateway> sites = new HashMap<>();
-    sites.put("OWM", new OWMSiteGateway(conn));
-    sites.put("WU", new WUSiteGateway(conn));
+    sites.put("OWM", new OWMSiteGateway(ctx.getWebConnection()));
+    sites.put("WU", new WUSiteGateway(ctx.getWebConnection()));
     StationManager stationManager = new StationManager(sites);
     String siteName;
     String cityName;
