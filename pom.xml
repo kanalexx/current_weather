@@ -54,7 +54,7 @@
           <execution>
             <phase>process-resources</phase>
             <configuration>
-              <propertyFile>src/main/liquibase/liquibase.properties</propertyFile>
+              <propertyFile>server.properties</propertyFile>
             </configuration>
             <goals>
               <goal>update</goal>
