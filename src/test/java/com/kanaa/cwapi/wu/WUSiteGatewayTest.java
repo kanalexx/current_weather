@@ -1,6 +1,6 @@
 package com.kanaa.cwapi.wu;
 
-import com.kanaa.cwapi.common.Connection;
+import com.kanaa.cwapi.common.WebGateway;
 import com.kanaa.cwapi.common.SiteGateway;
 import com.kanaa.cwapi.common.UserException;
 import org.junit.Before;
@@ -18,7 +18,7 @@ import static org.mockito.Mockito.when;
 public class WUSiteGatewayTest {
 
   private SiteGateway siteGateway;
-  private Connection conn = mock(Connection.class);
+  private WebGateway conn = mock(WebGateway.class);
 
   @Before
   public void setUp() throws Exception {

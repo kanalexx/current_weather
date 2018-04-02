@@ -1,6 +1,6 @@
 package com.kanaa.cwapi.wu;
 
-import com.kanaa.cwapi.common.Connection;
+import com.kanaa.cwapi.common.WebGateway;
 import com.kanaa.cwapi.common.SiteGateway;
 import com.kanaa.cwapi.common.Weather;
 import org.json.JSONObject;
@@ -13,7 +13,7 @@ public class WUSiteGateway extends SiteGateway {
   private static final String RESPONSE = "response";
   private static final String ERROR = "error";
 
-  public WUSiteGateway(Connection conn) {
+  public WUSiteGateway(WebGateway conn) {
     super(conn);
     url = "wunderground.com";
   }

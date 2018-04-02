@@ -7,7 +7,7 @@ import org.junit.Test
 import static org.mockito.Mockito.mock
 
 class SiteGatewayGTest {
-  private Connection conn = mock Connection.class
+  private WebGateway conn = mock WebGateway.class
 
   @Test
   void testEquals() {

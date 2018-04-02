@@ -1,8 +1,8 @@
 package com.kanaa.cwapi.owm
 
-import com.kanaa.cwapi.common.Connection
 import com.kanaa.cwapi.common.SiteGateway
 import com.kanaa.cwapi.common.UserException
+import com.kanaa.cwapi.common.WebGateway
 import org.junit.Before
 import org.junit.Test
 
@@ -16,7 +16,7 @@ class OWMSiteGatewayGTest {
   private static final String cityName = 'City'
 
   private SiteGateway site
-  private Connection conn = mock Connection.class
+  private WebGateway conn = mock WebGateway.class
 
   @Before
   void setUp() {

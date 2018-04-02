@@ -16,7 +16,7 @@ import static org.mockito.Mockito.when;
 public class OWMSiteGatewayTest {
 
   private SiteGateway siteGateway;
-  private Connection conn = mock(Connection.class);
+  private WebGateway conn = mock(WebGateway.class);
 
   @Before
   public void setUp() throws Exception {

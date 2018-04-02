@@ -8,7 +8,7 @@ import org.junit.runners.Suite;
 
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
-    ConnectionTest.class,
+    WebGatewayTest.class,
 
     SiteGatewayTest.class,
     OWMSiteGatewayTest.class,

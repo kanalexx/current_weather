@@ -6,7 +6,7 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.nio.charset.Charset;
 
-public class Connection {
+public class WebGateway {
 
   public String getAnswer(String request) throws IOException {
     if (!request.isEmpty()) {

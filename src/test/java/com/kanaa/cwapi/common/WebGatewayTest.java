@@ -19,12 +19,12 @@ import java.io.InputStream;
 import java.net.URLConnection;
 import java.nio.charset.StandardCharsets;
 
-public class ConnectionTest {
+public class WebGatewayTest {
 
-  private Connection connection;
+  private WebGateway webGateway;
 
   private JSONObject getAnswerAsJSON(String request) throws IOException {
-    String answer = connection.getAnswer(request);
+    String answer = webGateway.getAnswer(request);
     return new JSONObject(answer);
   }
 
@@ -36,15 +36,15 @@ public class ConnectionTest {
 
   @Before
   public void setUp() throws Exception {
-    connection = mock(Connection.class);
-    when(connection.getAnswer(anyString())).thenCallRealMethod();
+    webGateway = mock(WebGateway.class);
+    when(webGateway.getAnswer(anyString())).thenCallRealMethod();
   }
 
   @Test
   public void testGetAnswer() throws Exception {
-    when(connection.getInputStream(any(URLConnection.class)))
+    when(webGateway.getInputStream(any(URLConnection.class)))
         .thenReturn(getInputStream(OWM_VALID_JSON));
-    String answer = connection.getAnswer(OWM_VALID_URL);
+    String answer = webGateway.getAnswer(OWM_VALID_URL);
     JSONObject data = new JSONObject(answer);
     assertNotNull(data);
     assertTrue(data.has("main"));
@@ -52,13 +52,13 @@ public class ConnectionTest {
 
   @Test
   public void testEmptyRequest() throws Exception {
-    String answer = connection.getAnswer("");
+    String answer = webGateway.getAnswer("");
     assertEquals("", answer);
   }
 
   @Test
   public void testInvalidAppIDRequest() throws Exception {
-    when(connection.getInputStream(any(URLConnection.class)))
+    when(webGateway.getInputStream(any(URLConnection.class)))
         .thenReturn(getInputStream(OWM_INVALID_APPID_JSON));
     JSONObject data = getAnswerAsJSON(OWM_INVALID_APPID_URL);
     assertNotNull(data);
@@ -68,7 +68,7 @@ public class ConnectionTest {
   @Test
   // Возможно лишний тест, т.к. повторяет предыдущий
   public void testInvalidCityRequest() throws Exception {
-    when(connection.getInputStream(any(URLConnection.class)))
+    when(webGateway.getInputStream(any(URLConnection.class)))
         .thenReturn(getInputStream(OWM_INVALID_CITY_JSON));
     JSONObject data = getAnswerAsJSON(OWM_INVALID_CITY_URL);
     assertNotNull(data);
@@ -79,7 +79,7 @@ public class ConnectionTest {
 
   @Test
   public void testGetAnswerWU() throws Exception {
-    when(connection.getInputStream(any(URLConnection.class)))
+    when(webGateway.getInputStream(any(URLConnection.class)))
         .thenReturn(getInputStream(WU_VALID_JSON));
     JSONObject data = getAnswerAsJSON(WU_VALID_URL);
     assertNotNull(data);
@@ -88,7 +88,7 @@ public class ConnectionTest {
 
   @Test
   public void testInvalidCityRequestWU() throws Exception {
-    when(connection.getInputStream(any(URLConnection.class)))
+    when(webGateway.getInputStream(any(URLConnection.class)))
         .thenReturn(getInputStream(WU_INVALID_CITY_JSON));
     JSONObject data = getAnswerAsJSON(WU_INVALID_CITY_URL);
     assertNotNull(data);
@@ -99,7 +99,7 @@ public class ConnectionTest {
   @Test
   // Возможно лишний тест, т.к. повторяет предыдущий
   public void testInvalidAppIDRequestWU() throws Exception {
-    when(connection.getInputStream(any(URLConnection.class)))
+    when(webGateway.getInputStream(any(URLConnection.class)))
         .thenReturn(getInputStream(WU_INVALID_APPID_JSON));
     JSONObject data = getAnswerAsJSON(WU_INVALID_APPID_URL);
     assertNotNull(data);

@@ -21,7 +21,7 @@ public class App {
   public static void main(String[] args) throws IOException {
     String nameFile = "log4j.properties";
     PropertyConfigurator.configure(nameFile);
-    Connection conn = new Connection();
+    WebGateway conn = new WebGateway();
 
     BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     Map<String, SiteGateway> sites = new HashMap<>();

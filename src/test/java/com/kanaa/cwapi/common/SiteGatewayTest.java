@@ -9,7 +9,7 @@ import static org.mockito.Mockito.mock;
 
 public class SiteGatewayTest {
 
-  private Connection conn = mock(Connection.class);
+  private WebGateway conn = mock(WebGateway.class);
 
   @Test
   public void testEquals() throws Exception {
