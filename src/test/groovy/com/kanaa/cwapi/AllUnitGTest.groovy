@@ -12,6 +12,7 @@ import org.junit.runners.Suite
     SiteGatewayGTest.class,
     OWMSiteGatewayGTest.class,
     WUSiteGatewayGTest.class,
+    SiteGTest.class,
 
     UStationGTest.class,
     StationManagerGTest.class,
