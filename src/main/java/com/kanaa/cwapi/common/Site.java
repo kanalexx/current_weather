@@ -1,19 +1,25 @@
 package com.kanaa.cwapi.common;
 
+import org.apache.log4j.Logger;
 import org.json.JSONObject;
 
 import java.io.IOException;
 
 public abstract class Site {
+    private static final Logger log = Logger.getLogger(Site.class);
 
+    public static final String APPID_URL_PART = "{APPID}";
+    public static final String CITYNAME_URL_PART = "{CITYNAME}";
+
+    private Context ctx;
     private String name;
     private String url;
     private String appId;
     private String weatherRequest;
-    protected final Context ctx;
+    private String processorClassName;
 
-    public Site(Context conn) {
-        ctx = conn;
+    public Site(Context ctx) {
+        this.ctx = ctx;
     }
 
     @Override
@@ -35,14 +41,14 @@ public abstract class Site {
         return url;
     }
 
-    public Weather getWeather(String cityName) throws IOException, UserException {
-        String answer = ctx.getAnswer(getUrlCity(cityName));
-        JSONObject data = new JSONObject(answer);
-        if (hasError(data)) {
-            throw new UserException(getErrorMessage(data));
-        }
-        return getSpecificWeather(data);
-    }
+//    public Weather getWeather(String cityName) throws IOException, UserException {
+//        String answer = ctx.getAnswer(getUrlCity(cityName));
+//        JSONObject data = new JSONObject(answer);
+//        if (hasError(data)) {
+//            throw new UserException(getErrorMessage(data));
+//        }
+//        return getSpecificWeather(data);
+//    }
 
     public String getName() {
         return name;
@@ -76,7 +82,24 @@ public abstract class Site {
         this.weatherRequest = weatherRequest;
     }
 
-    public abstract String getUrlCity(String cityName);
+  public Weather getWeather(String cityName) throws IOException, UserException {
+    String answer = ctx.getAnswer(getUrlCity(cityName));
+    try {
+      Processor processor = (Processor) Class.forName(this.processorClassName).getConstructor().newInstance();
+      return processor.process(answer);
+    } catch (Exception ex) {
+      log.error(ex);
+      throw new UserException(ex);
+    }
+  }
+
+  public String getUrlCity(String cityName) {
+    return getWeatherRequest()
+        .replace(CITYNAME_URL_PART, cityName)
+        .replace(APPID_URL_PART, getAppId());
+  }
+
+//    public abstract String getUrlCity(String cityName);
     public abstract String getSiteName();
     protected abstract String getErrorMessage(JSONObject data);
     protected abstract boolean hasError(JSONObject data);

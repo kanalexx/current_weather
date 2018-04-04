@@ -6,4 +6,7 @@ public class UserException extends Exception {
         super(message);
     }
 
+  public UserException(Throwable cause) {
+    super(cause);
+  }
 }
