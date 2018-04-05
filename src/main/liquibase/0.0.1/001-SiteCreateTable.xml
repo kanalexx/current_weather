@@ -12,11 +12,14 @@
                 <constraints nullable="false"/>
             </column>
             <column name="SHORT_NAME" type="varchar(50)"/>
-            <column name="url" type="varchar(255)">
+            <column name="URL" type="varchar(255)">
                 <constraints nullable="false"/>
             </column>
             <column name="APPID" type="varchar(255)"/>
             <column name="WEATHER_REQUEST" type="varchar(255)"/>
+            <column name="PROCESSOR" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
         </createTable>
     </changeSet>
 </databaseChangeLog>

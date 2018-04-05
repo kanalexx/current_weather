@@ -1,29 +1,24 @@
 package com.kanaa.cwapi.owm;
 
-
-import com.kanaa.cwapi.common.Context;
-import com.kanaa.cwapi.common.Site;
+import com.kanaa.cwapi.common.Processor;
+import com.kanaa.cwapi.common.UserException;
 import com.kanaa.cwapi.common.Weather;
 import org.json.JSONObject;
 
-public class OWMSite extends Site {
+public class OWMProcessor implements Processor {
 
     private static final String MESSAGE = "message";
 
-    public OWMSite(Context ctx) {
-        super(ctx);
-    }
-
     @Override
-    public String getUrl() {
-        return "openweathermap.org";
-    }
-
-    @Override
-    public String getUrlCity(String cityName) {
-        return String.format(
-                "http://api.openweathermap.org/data/2.5/weather?units=metric&q=%s&APPID=ce93f7bfb9ee94a56b6f0f36743b1227",
-                cityName);
+    public Weather process(String answer) throws UserException {
+        JSONObject data = new JSONObject(answer);
+        if (hasError(data)) {
+            throw new UserException(getErrorMessage(data));
+        }
+        Weather weather = new Weather();
+        weather.setTemp(data.getJSONObject("main").getDouble("temp"));
+        weather.setPressurePa(data.getJSONObject("main").getInt("pressure"));
+        return weather;
     }
 
     protected boolean hasError(JSONObject data) {

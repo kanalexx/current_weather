@@ -1,8 +1,8 @@
 package com.kanaa.cwapi
 
 import com.kanaa.cwapi.common.*
-import com.kanaa.cwapi.owm.OWMSiteGTest
-import com.kanaa.cwapi.wu.WUSiteGTest
+import com.kanaa.cwapi.owm.OWMProcessorGTest
+import com.kanaa.cwapi.wu.WUProcessorGTest
 import org.junit.runner.RunWith
 import org.junit.runners.Suite
 
@@ -10,8 +10,8 @@ import org.junit.runners.Suite
 @Suite.SuiteClasses([
     WebGatewayGTest.class,
     SiteGTest.class,
-    OWMSiteGTest.class,
-    WUSiteGTest.class,
+    OWMProcessorGTest.class,
+    WUProcessorGTest.class,
     SiteGTest.class,
 
     UStationGTest.class,

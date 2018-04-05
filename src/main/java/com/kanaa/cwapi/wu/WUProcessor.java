@@ -1,29 +1,23 @@
 package com.kanaa.cwapi.wu;
 
-import com.kanaa.cwapi.common.Context;
-import com.kanaa.cwapi.common.Site;
-import com.kanaa.cwapi.common.Weather;
+import com.kanaa.cwapi.common.*;
 import org.json.JSONObject;
 
-public class WUSite extends Site {
+public class WUProcessor implements Processor {
 
     private static final String RESPONSE = "response";
     private static final String ERROR = "error";
 
-    public WUSite(Context ctx) {
-        super(ctx);
-    }
-
     @Override
-    public String getUrl() {
-        return "wunderground.com";
-    }
-
-    @Override
-    public String getUrlCity(String cityName) {
-        return String.format(
-                "http://api.wunderground.com/api/bf926c867532af8d/conditions/q/%s.json",
-                cityName);
+    public Weather process(String answer) throws UserException {
+        JSONObject data = new JSONObject(answer);
+        if (hasError(data)) {
+            throw new UserException(getErrorMessage(data));
+        }
+        Weather weather = new Weather();
+        weather.setTemp(data.getJSONObject("current_observation").getDouble("temp_c"));
+        weather.setPressurePa(data.getJSONObject("current_observation").getInt("pressure_mb"));
+        return weather;
     }
 
     protected boolean hasError(JSONObject data) {
