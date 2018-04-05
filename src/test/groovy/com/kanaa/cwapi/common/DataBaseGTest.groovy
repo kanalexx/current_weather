@@ -11,13 +11,21 @@ import java.sql.ResultSet
  */
 class DataBaseGTest {
 
+  private Context ctx = new Context()
+
   @Test
-  public void testConnection() throws Exception {
-    Context ctx = new Context()
+  void testConnection() throws Exception {
     Connection conn = ctx.dbConnection
     def statement = conn.createStatement()
     ResultSet rs = statement.executeQuery('select version()')
     assert rs.next()
     conn.close()
+  }
+
+  @Test
+  void testFindSite() throws Exception {
+    def site = new Site(ctx)
+    site.find(1)
+    assert site.getShortName() == "OWM"
   }
 }
