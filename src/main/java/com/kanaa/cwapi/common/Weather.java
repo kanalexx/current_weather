@@ -4,17 +4,33 @@ import org.json.JSONObject;
 
 import java.util.Date;
 
-public abstract class Weather {
+public class Weather {
     protected JSONObject data;
     protected Date createDate;
 
-    public Weather(JSONObject dataWeather) {
-        this.data = dataWeather;
+    private double temp;
+    private int pressure;
+
+    public Weather() {
         this.createDate = new Date();
     }
 
-    public abstract double getTemp();
-    public abstract int getPressurePa();
+    public double getTemp() {
+        return temp;
+    }
+
+    public void setTemp(double temp) {
+        this.temp = temp;
+    }
+
+    public int getPressurePa() {
+        return pressure;
+    }
+
+    public void setPressurePa(int pressure) {
+        this.pressure = pressure;
+    }
+
     public int getPressureMmHg() {
         return (int) Math.round(getPressurePa() * 7.5006 / 10);
     }

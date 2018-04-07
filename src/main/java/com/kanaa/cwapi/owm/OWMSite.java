@@ -36,8 +36,4 @@ public class OWMSite extends Site {
             errorMessage = String.format("Ошибка: %s. %s.", data.getInt("cod"), data.getString(MESSAGE));
         return errorMessage;
     }
-
-    protected Weather getSpecificWeather(JSONObject data) {
-        return new OWMWeather(data);
-    }
 }

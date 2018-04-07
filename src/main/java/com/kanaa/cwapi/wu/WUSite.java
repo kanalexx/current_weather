@@ -44,8 +44,4 @@ public class WUSite extends Site {
         return errorMessage;
     }
 
-    protected Weather getSpecificWeather(JSONObject data) {
-        return new WUWeather(data);
-    }
-
 }

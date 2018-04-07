@@ -1,7 +1,5 @@
 package com.kanaa.cwapi.common;
 
-import com.kanaa.cwapi.owm.OWMWeather;
-import com.kanaa.cwapi.wu.WUWeather;
 import org.junit.Test;
 
 import static com.kanaa.cwapi.common.ConstForTest.*;
@@ -48,7 +46,7 @@ public class StationTest extends MyTest {
     public void getOWMWeather() throws Exception {
         String answer = OWM_VALID_JSON;
         Class site = Site.class;
-        testClassWeather(answer, site, OWMWeather.class);
+        testClassWeather(answer, site, Weather.class);
         getTemp(answer, site, 24);
         getPressurePa(answer, site, 1015);
         getPressureMmHg(answer, site, 761);
@@ -58,7 +56,7 @@ public class StationTest extends MyTest {
     public void getWUWeather() throws Exception {
         String answer = WU_VALID_JSON;
         Class site = Site.class;
-        testClassWeather(answer, site, WUWeather.class);
+        testClassWeather(answer, site, Weather.class);
         getTemp(answer, site, 20.7);
         getPressurePa(answer, site, 1004);
         getPressureMmHg(answer, site, 753);
