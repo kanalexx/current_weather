@@ -16,8 +16,8 @@ import static org.mockito.Mockito.when;
 public class StationTest extends MyTest {
 
     private Weather getWeather(String connAnswer, Class classSite) throws Exception {
-        Connection conn = mock(Connection.class);
-        Site site = (Site) classSite.getConstructor(Connection.class).newInstance(conn);
+        WebGateway conn = mock(WebGateway.class);
+        Site site = (Site) classSite.getConstructor(WebGateway.class).newInstance(conn);
         when(conn.getAnswer(anyString())).thenReturn(connAnswer);
         Station station = new Station("City", site);
 

@@ -16,8 +16,8 @@ import static org.mockito.Mockito.when
  *
  * @author Alexander Kanunnikov
  */
-class ConnectionGTest {
-    private Connection connection
+class WebGatewayGTest {
+    private WebGateway connection
 
     private JSONObject getAnswerAsJSON(String request) {
         String answer = connection.getAnswer(request)
@@ -30,7 +30,7 @@ class ConnectionGTest {
 
     @Before
     void setUp() {
-        connection = mock Connection.class
+        connection = mock WebGateway.class
         when(connection.getAnswer(anyString())).thenCallRealMethod()
     }
 

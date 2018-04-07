@@ -7,10 +7,10 @@ import java.io.IOException;
 public abstract class Site {
 
     protected String url;
-    protected final Connection connection;
+    protected final WebGateway webGateway;
 
-    public Site(Connection conn) {
-        connection = conn;
+    public Site(WebGateway conn) {
+        webGateway = conn;
     }
 
     @Override
@@ -33,7 +33,7 @@ public abstract class Site {
     }
 
     public Weather getWeather(String cityName) throws IOException, UserException {
-        String answer = connection.getAnswer(getUrlCity(cityName));
+        String answer = webGateway.getAnswer(getUrlCity(cityName));
         JSONObject data = new JSONObject(answer);
         if (hasError(data)) {
             throw new UserException(getErrorMessage(data));

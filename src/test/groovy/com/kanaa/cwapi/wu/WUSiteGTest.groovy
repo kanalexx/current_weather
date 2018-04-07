@@ -1,6 +1,6 @@
 package com.kanaa.cwapi.wu
 
-import com.kanaa.cwapi.common.Connection
+import com.kanaa.cwapi.common.WebGateway
 import com.kanaa.cwapi.common.Site
 import com.kanaa.cwapi.common.UserException
 import org.junit.Before
@@ -16,7 +16,7 @@ class WUSiteGTest {
     private static final String cityName = 'City'
 
     private Site site
-    private Connection conn = mock Connection.class
+    private WebGateway conn = mock WebGateway.class
 
     @Before
     void setUp() {
