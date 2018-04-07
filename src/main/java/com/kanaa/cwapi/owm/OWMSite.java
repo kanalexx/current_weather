@@ -12,7 +12,11 @@ public class OWMSite extends Site {
 
     public OWMSite(Context ctx) {
         super(ctx);
-        url = "openweathermap.org";
+    }
+
+    @Override
+    public String getUrl() {
+        return "openweathermap.org";
     }
 
     @Override

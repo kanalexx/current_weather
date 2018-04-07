@@ -12,7 +12,11 @@ public class WUSite extends Site {
 
     public WUSite(Context ctx) {
         super(ctx);
-        url = "wunderground.com";
+    }
+
+    @Override
+    public String getUrl() {
+        return "wunderground.com";
     }
 
     @Override

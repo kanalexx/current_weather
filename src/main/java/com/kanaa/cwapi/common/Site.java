@@ -6,7 +6,10 @@ import java.io.IOException;
 
 public abstract class Site {
 
-    protected String url;
+    private String name;
+    private String url;
+    private String appId;
+    private String weatherRequest;
     protected final Context ctx;
 
     public Site(Context conn) {
@@ -39,6 +42,38 @@ public abstract class Site {
             throw new UserException(getErrorMessage(data));
         }
         return getSpecificWeather(data);
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public String getAppId() {
+        return appId;
+    }
+
+    public void setAppId(String appId) {
+        this.appId = appId;
+    }
+
+    public String getWeatherRequest() {
+        return weatherRequest;
+    }
+
+    public void setWeatherRequest(String weatherRequest) {
+        this.weatherRequest = weatherRequest;
     }
 
     public abstract String getUrlCity(String cityName);
