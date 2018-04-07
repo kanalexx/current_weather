@@ -55,4 +55,8 @@ public class Context {
     }
     return props;
   }
+
+  public String getAnswer(String request) throws IOException {
+    return getWebConnection().getAnswer(request);
+  }
 }
