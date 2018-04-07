@@ -21,7 +21,7 @@ class WUSiteGTest {
     @Before
     void setUp() {
         when(ctx.getAnswer(anyString())).thenReturn(WU_VALID_JSON)
-        site = new WUSite(ctx)
+        site = new Site(ctx)
     }
 
     @Test

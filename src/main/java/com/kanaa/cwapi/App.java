@@ -1,17 +1,12 @@
 package com.kanaa.cwapi;
 
 import com.kanaa.cwapi.common.*;
-import com.kanaa.cwapi.owm.OWMSite;
-import com.kanaa.cwapi.wu.WUSite;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -30,8 +25,8 @@ public class App
 
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         Map<String, Site> sites = new HashMap<>();
-        sites.put("OWM", new OWMSite(ctx));
-        sites.put("WU", new WUSite(ctx));
+        sites.put("OWM", new Site(ctx));
+        sites.put("WU", new Site(ctx));
         StationManager stationManager = new StationManager(sites);
         String siteName;
         String cityName;

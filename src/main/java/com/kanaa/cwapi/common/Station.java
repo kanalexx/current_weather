@@ -40,7 +40,7 @@ public class Station {
     }
 
     public String getSiteName() {
-        return site.getSiteName();
+        return String.format("%s (%s)", site.getName(), site.getUrl());
     }
 
     public String getCityName() {

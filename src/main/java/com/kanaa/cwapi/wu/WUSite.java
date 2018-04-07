@@ -26,14 +26,12 @@ public class WUSite extends Site {
                 cityName);
     }
 
-    @Override
     protected boolean hasError(JSONObject data) {
         return (data.length() == 0
                 || (data.has(RESPONSE) && data.getJSONObject(RESPONSE).has(ERROR))
                 || !data.has("current_observation"));
     }
 
-    @Override
     protected String getErrorMessage(JSONObject data) {
         String errorMessage = "";
         if (data.has(RESPONSE) && data.getJSONObject(RESPONSE).has(ERROR)) {
@@ -46,12 +44,6 @@ public class WUSite extends Site {
         return errorMessage;
     }
 
-    @Override
-    public String getSiteName() {
-        return "Weather API - Weather Underground (https://www.wunderground.com)";
-    }
-
-    @Override
     protected Weather getSpecificWeather(JSONObject data) {
         return new WUWeather(data);
     }

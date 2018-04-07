@@ -9,6 +9,7 @@ import org.junit.Test
 import static com.kanaa.cwapi.common.ConstForTest.*
 import static org.mockito.Matchers.anyString
 import static org.mockito.Mockito.mock
+import static org.mockito.Mockito.spy
 import static org.mockito.Mockito.when
 
 class OWMSiteGTest {
@@ -21,7 +22,7 @@ class OWMSiteGTest {
     @Before
     void setUp() {
         when(ctx.getAnswer(anyString())).thenReturn(OWM_VALID_JSON)
-        site = new OWMSite(ctx)
+        site = spy new Site(ctx)
     }
 
     @Test

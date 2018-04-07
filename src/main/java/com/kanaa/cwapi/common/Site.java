@@ -1,11 +1,10 @@
 package com.kanaa.cwapi.common;
 
 import org.apache.log4j.Logger;
-import org.json.JSONObject;
 
 import java.io.IOException;
 
-public abstract class Site {
+public class Site {
     private static final Logger log = Logger.getLogger(Site.class);
 
     public static final String APPID_URL_PART = "{APPID}";
@@ -40,15 +39,6 @@ public abstract class Site {
     public String toString() {
         return url;
     }
-
-//    public Weather getWeather(String cityName) throws IOException, UserException {
-//        String answer = ctx.getAnswer(getUrlCity(cityName));
-//        JSONObject data = new JSONObject(answer);
-//        if (hasError(data)) {
-//            throw new UserException(getErrorMessage(data));
-//        }
-//        return getSpecificWeather(data);
-//    }
 
     public String getName() {
         return name;
@@ -98,11 +88,5 @@ public abstract class Site {
         .replace(CITYNAME_URL_PART, cityName)
         .replace(APPID_URL_PART, getAppId());
   }
-
-//    public abstract String getUrlCity(String cityName);
-    public abstract String getSiteName();
-    protected abstract String getErrorMessage(JSONObject data);
-    protected abstract boolean hasError(JSONObject data);
-    protected abstract Weather getSpecificWeather(JSONObject data);
 
 }

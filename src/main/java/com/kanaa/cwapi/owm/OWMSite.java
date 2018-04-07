@@ -26,12 +26,10 @@ public class OWMSite extends Site {
                 cityName);
     }
 
-    @Override
     protected boolean hasError(JSONObject data) {
         return data.length() == 0 || (data.has("cod") && data.has(MESSAGE));
     }
 
-    @Override
     protected String getErrorMessage(JSONObject data) {
         String errorMessage = "";
         if (data.has("cod") && data.has(MESSAGE))
@@ -39,12 +37,6 @@ public class OWMSite extends Site {
         return errorMessage;
     }
 
-    @Override
-    public String getSiteName() {
-        return "Weather API - OpenWeatherMap (https://openweathermap.org)";
-    }
-
-    @Override
     protected Weather getSpecificWeather(JSONObject data) {
         return new OWMWeather(data);
     }
