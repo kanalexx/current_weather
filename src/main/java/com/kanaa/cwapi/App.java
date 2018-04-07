@@ -30,8 +30,8 @@ public class App
 
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         Map<String, Site> sites = new HashMap<>();
-        sites.put("OWM", new OWMSite(ctx.getWebConnection()));
-        sites.put("WU", new WUSite(ctx.getWebConnection()));
+        sites.put("OWM", new OWMSite(ctx));
+        sites.put("WU", new WUSite(ctx));
         StationManager stationManager = new StationManager(sites);
         String siteName;
         String cityName;

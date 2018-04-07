@@ -1,7 +1,7 @@
 package com.kanaa.cwapi.owm;
 
 
-import com.kanaa.cwapi.common.WebGateway;
+import com.kanaa.cwapi.common.Context;
 import com.kanaa.cwapi.common.Site;
 import com.kanaa.cwapi.common.Weather;
 import org.json.JSONObject;
@@ -10,8 +10,8 @@ public class OWMSite extends Site {
 
     private static final String MESSAGE = "message";
 
-    public OWMSite(WebGateway conn) {
-        super(conn);
+    public OWMSite(Context ctx) {
+        super(ctx);
         url = "openweathermap.org";
     }
 

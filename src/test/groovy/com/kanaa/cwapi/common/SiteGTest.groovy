@@ -7,13 +7,13 @@ import org.junit.Test
 import static org.mockito.Mockito.mock
 
 class SiteGTest {
-    private WebGateway conn = mock WebGateway.class
+    private Context ctx = mock Context.class
 
     @Test
     void testEquals() {
-        Site wuSite1 = new WUSite(conn)
-        Site owmSite1 = new OWMSite(conn)
-        Site wuSite2 = new WUSite(conn)
+        Site wuSite1 = new WUSite(ctx)
+        Site owmSite1 = new OWMSite(ctx)
+        Site wuSite2 = new WUSite(ctx)
 
         assert wuSite1 == wuSite2
         assert wuSite1 != owmSite1

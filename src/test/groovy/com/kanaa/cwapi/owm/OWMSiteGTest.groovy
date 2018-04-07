@@ -1,6 +1,6 @@
 package com.kanaa.cwapi.owm
 
-import com.kanaa.cwapi.common.WebGateway
+import com.kanaa.cwapi.common.Context
 import com.kanaa.cwapi.common.Site
 import com.kanaa.cwapi.common.UserException
 import org.junit.Before
@@ -16,12 +16,12 @@ class OWMSiteGTest {
     private static final String cityName = 'City'
 
     private Site site
-    private WebGateway conn = mock WebGateway.class
+    private Context ctx = mock Context.class
 
     @Before
     void setUp() {
-        when(conn.getAnswer(anyString())).thenReturn(OWM_VALID_JSON)
-        site = new OWMSite(conn)
+        when(ctx.getAnswer(anyString())).thenReturn(OWM_VALID_JSON)
+        site = new OWMSite(ctx)
     }
 
     @Test
@@ -44,13 +44,13 @@ class OWMSiteGTest {
 
     @Test(expected = UserException.class)
     void getUserExceptionWhenInvalidCityName() {
-        when(conn.getAnswer(anyString())).thenReturn(OWM_INVALID_CITY_JSON)
+        when(ctx.getAnswer(anyString())).thenReturn(OWM_INVALID_CITY_JSON)
         site.getWeather(cityName)
     }
 
     @Test(expected = UserException.class)
     void getUserExceptionWhenInvalidAppID() {
-        when(conn.getAnswer(anyString())).thenReturn(OWM_INVALID_APPID_JSON)
+        when(ctx.getAnswer(anyString())).thenReturn(OWM_INVALID_APPID_JSON)
         site.getWeather(cityName)
     }
 
