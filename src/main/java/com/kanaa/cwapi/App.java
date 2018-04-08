@@ -7,6 +7,7 @@ import org.apache.log4j.PropertyConfigurator;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -25,8 +26,16 @@ public class App
 
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         Map<String, Site> sites = new HashMap<>();
-        sites.put("OWM", new Site(ctx));
-        sites.put("WU", new Site(ctx));
+      try {
+          Site OWMSite = new Site(ctx);
+          OWMSite.find(1L);
+          sites.put("OWM", OWMSite);
+          Site WUSite = new Site(ctx);
+          WUSite.find(2L);
+          sites.put("WU", WUSite);
+      } catch (SQLException|UserException e) {
+          log.error(e);
+      }
         StationManager stationManager = new StationManager(sites);
         String siteName;
         String cityName;
