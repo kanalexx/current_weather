@@ -7,6 +7,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Properties;
+
 import org.apache.log4j.Logger;
 
 public class Context {
@@ -49,8 +50,7 @@ public class Context {
 
   public Properties getProperties() throws IOException {
     Properties props = new Properties();
-    try (InputStream in = new FileInputStream("server.properties"))
-    {
+    try (InputStream in = new FileInputStream("server.properties")) {
       props.load(in);
     }
     return props;

@@ -12,60 +12,60 @@ import static org.mockito.Mockito.when;
 
 public class StationTest extends MyTest {
 
-    private Context ctx;
-    private Site site;
+  private Context ctx;
+  private Site site;
 
-    @Before
-    public void setUp() throws Exception {
-        ctx = mock(Context.class);
-        site = new Site(ctx);
-        site.setWeatherRequest(Site.APPID_URL_PART + Site.CITYNAME_URL_PART);
-        site.setAppId("");
-    }
+  @Before
+  public void setUp() throws Exception {
+    ctx = mock(Context.class);
+    site = new Site(ctx);
+    site.setWeatherRequest(Site.APPID_URL_PART + Site.CITYNAME_URL_PART);
+    site.setAppId("");
+  }
 
-    private Weather getWeather() throws Exception {
-        Station station = new Station("City", site);
-        station.update();
-        return station.getWeather();
-    }
+  private Weather getWeather() throws Exception {
+    Station station = new Station("City", site);
+    station.update();
+    return station.getWeather();
+  }
 
-    private void testClassWeather() throws Exception {
-        Weather weather = getWeather();
-        assertNotNull(weather);
-    }
+  private void testClassWeather() throws Exception {
+    Weather weather = getWeather();
+    assertNotNull(weather);
+  }
 
-    private void getTemp(double expect) throws Exception {
-        Weather weather = getWeather();
-        assertEquals(expect, weather.getTemp(), 1e-3);
-    }
+  private void getTemp(double expect) throws Exception {
+    Weather weather = getWeather();
+    assertEquals(expect, weather.getTemp(), 1e-3);
+  }
 
-    private void getPressurePa(int expect) throws Exception {
-        Weather weather = getWeather();
-        assertEquals(expect, weather.getPressurePa());
-    }
+  private void getPressurePa(int expect) throws Exception {
+    Weather weather = getWeather();
+    assertEquals(expect, weather.getPressurePa());
+  }
 
-    private void getPressureMmHg(int expect) throws Exception {
-        Weather weather = getWeather();
-        assertEquals(expect, weather.getPressureMmHg());
-    }
+  private void getPressureMmHg(int expect) throws Exception {
+    Weather weather = getWeather();
+    assertEquals(expect, weather.getPressureMmHg());
+  }
 
-    @Test
-    public void getOWMWeather() throws Exception {
-        when(ctx.getAnswer(anyString())).thenReturn(OWM_VALID_JSON);
-        site.setProcessorClassName("com.kanaa.cwapi.owm.OWMProcessor");
-        testClassWeather();
-        getTemp(24);
-        getPressurePa(1015);
-        getPressureMmHg(761);
-    }
+  @Test
+  public void getOWMWeather() throws Exception {
+    when(ctx.getAnswer(anyString())).thenReturn(OWM_VALID_JSON);
+    site.setProcessorClassName("com.kanaa.cwapi.owm.OWMProcessor");
+    testClassWeather();
+    getTemp(24);
+    getPressurePa(1015);
+    getPressureMmHg(761);
+  }
 
-    @Test
-    public void getWUWeather() throws Exception {
-        when(ctx.getAnswer(anyString())).thenReturn(WU_VALID_JSON);
-        site.setProcessorClassName("com.kanaa.cwapi.wu.WUProcessor");
-        testClassWeather();
-        getTemp(20.7);
-        getPressurePa(1004);
-        getPressureMmHg(753);
-    }
+  @Test
+  public void getWUWeather() throws Exception {
+    when(ctx.getAnswer(anyString())).thenReturn(WU_VALID_JSON);
+    site.setProcessorClassName("com.kanaa.cwapi.wu.WUProcessor");
+    testClassWeather();
+    getTemp(20.7);
+    getPressurePa(1004);
+    getPressureMmHg(753);
+  }
 }

@@ -17,7 +17,7 @@ class DataBaseGTest {
   void testConnection() throws Exception {
     Connection conn = ctx.dbConnection
     def statement = conn.createStatement()
-    ResultSet rs = statement.executeQuery('select version()')
+    ResultSet rs = statement.executeQuery('SELECT version()')
     assert rs.next()
     conn.close()
   }

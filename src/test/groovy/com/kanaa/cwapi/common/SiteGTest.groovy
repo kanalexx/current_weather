@@ -5,7 +5,7 @@ import org.junit.Test
 import static org.mockito.Mockito.mock
 
 class SiteGTest extends MyTest {
-    private Context ctx = mock Context.class
+  private Context ctx = mock Context.class
 
 //    @Test
 //    void testEquals() {

@@ -5,38 +5,38 @@ import org.json.JSONObject;
 import java.util.Date;
 
 public class Weather {
-    protected JSONObject data;
-    protected Date createDate;
+  protected JSONObject data;
+  protected Date createDate;
 
-    private double temp;
-    private int pressure;
+  private double temp;
+  private int pressure;
 
-    public Weather() {
-        this.createDate = new Date();
-    }
+  public Weather() {
+    this.createDate = new Date();
+  }
 
-    public double getTemp() {
-        return temp;
-    }
+  public double getTemp() {
+    return temp;
+  }
 
-    public void setTemp(double temp) {
-        this.temp = temp;
-    }
+  public void setTemp(double temp) {
+    this.temp = temp;
+  }
 
-    public int getPressurePa() {
-        return pressure;
-    }
+  public int getPressurePa() {
+    return pressure;
+  }
 
-    public void setPressurePa(int pressure) {
-        this.pressure = pressure;
-    }
+  public void setPressurePa(int pressure) {
+    this.pressure = pressure;
+  }
 
-    public int getPressureMmHg() {
-        return (int) Math.round(getPressurePa() * 7.5006 / 10);
-    }
+  public int getPressureMmHg() {
+    return (int) Math.round(getPressurePa() * 7.5006 / 10);
+  }
 
-    public Date getCreateDate() {
-        return createDate;
-    }
+  public Date getCreateDate() {
+    return createDate;
+  }
 
 }
