@@ -7,15 +7,18 @@ import static org.mockito.Mockito.mock
 class SiteGTest extends MyTest {
   private Context ctx = mock Context.class
 
-//    @Test
-//    void testEquals() {
-//        Site wuSite1 = new WUSite(ctx)
-//        Site owmSite1 = new OWMSite(ctx)
-//        Site wuSite2 = new WUSite(ctx)
-//
-//        assert wuSite1 == wuSite2
-//        assert wuSite1 != owmSite1
-//    }
+    @Test
+    void testEquals() {
+      Site wuSite1 = new Site(ctx)
+      wuSite1.setId(1);
+      Site owmSite1 = new Site(ctx)
+      owmSite1.setId(2);
+      Site wuSite2 = new Site(ctx)
+      wuSite2.setId(1);
+
+      assert wuSite1 == wuSite2
+      assert wuSite1 != owmSite1
+    }
 
   @Test
   void testGetUrlCity() throws Exception {

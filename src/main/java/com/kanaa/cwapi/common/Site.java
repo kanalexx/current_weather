@@ -30,16 +30,13 @@ public class Site extends DataObject {
 
   @Override
   public boolean equals(Object obj) {
-    if (obj == null)
-      return false;
-    if (this == obj)
-      return true;
-    return (getClass() == obj.getClass());
+    return super.equals(obj);
   }
 
   @Override
-  public String toString() {
-    return url;
+  public String getFieldsStringValues() {
+    return super.getFieldsStringValues() +
+        ",url=" + (url != null ? url : "");
   }
 
   public String getName() {
