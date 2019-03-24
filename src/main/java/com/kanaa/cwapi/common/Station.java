@@ -1,6 +1,5 @@
 package com.kanaa.cwapi.common;
 
-import com.kanaa.cwapi.web.Site;
 import org.apache.log4j.Logger;
 
 import java.io.IOException;
@@ -16,11 +15,11 @@ public class Station {
   private static long WEATHER_DATA_ACTUAL_TIME = 7200000L;
 
   private String cityName;
-  private Site site;
+  private WebSite site;
   private String errorMessage = "";
   private Weather weather;
 
-  public Station(String cityName, Site site) {
+  public Station(String cityName, WebSite site) {
     this.cityName = cityName;
     this.site = site;
   }

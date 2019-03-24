@@ -1,7 +1,5 @@
 package com.kanaa.cwapi.common;
 
-import com.kanaa.cwapi.web.Site;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -10,9 +8,9 @@ public class StationManager {
 
   private class ResourceKey {
     private String city;
-    private Site site;
+    private WebSite site;
 
-    public ResourceKey(String city, Site site) {
+    public ResourceKey(String city, WebSite site) {
       this.city = city;
       this.site = site;
     }
@@ -41,9 +39,9 @@ public class StationManager {
    * Статичный кэш станций. Общий для всех экземпляров класса.
    */
   private static Map<ResourceKey, Station> stationCache = new HashMap<>();
-  private Map<String, Site> sites;
+  private Map<String, WebSite> sites;
 
-  public StationManager(Map<String, Site> sites) {
+  public StationManager(Map<String, WebSite> sites) {
     this.sites = sites;
   }
 
@@ -52,7 +50,7 @@ public class StationManager {
   }
 
   public Station getStationByCityName(String cityName, String siteName) throws UserException {
-    Site site = getSite(siteName);
+    WebSite site = getSite(siteName);
     ResourceKey resourceKey = new ResourceKey(cityName, site);
     Station station = stationCache.get(resourceKey);
     if (station == null) {
@@ -62,11 +60,11 @@ public class StationManager {
     return station;
   }
 
-  private Site getSite(String siteName) throws UserException {
+  private WebSite getSite(String siteName) throws UserException {
     if (sites.isEmpty()) {
       throw new UserException("Список сайтов пуст.");
     }
-    Site site;
+    WebSite site;
     if (siteName.isEmpty()) {
       site = new ArrayList<>(sites.values()).get(0);
       return site;

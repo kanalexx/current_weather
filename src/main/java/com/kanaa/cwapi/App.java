@@ -24,14 +24,14 @@ public class App {
     Context ctx = new Context();
 
     BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-    Map<String, Site> sites = new HashMap<>();
+    Map<String, WebSite> sites = new HashMap<>();
     try {
-      Site OWMSite = new Site(ctx);
-      OWMSite.find(1L);
-      sites.put("OWM", OWMSite);
-      Site WUSite = new Site(ctx);
-      WUSite.find(2L);
-      sites.put("WU", WUSite);
+      Site owmSite = new Site(ctx);
+      owmSite.find(1L);
+      sites.put("OWM", owmSite);
+      Site wuSite = new Site(ctx);
+      wuSite.find(2L);
+      sites.put("WU", wuSite);
     } catch (SQLException | UserException e) {
       log.error(e);
     }
