@@ -1,5 +1,6 @@
 package com.kanaa.cwapi.common;
 
+import com.kanaa.cwapi.web.Site;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -52,7 +53,7 @@ public class StationTest extends MyTest {
   @Test
   public void getOWMWeather() throws Exception {
     when(ctx.getAnswer(anyString())).thenReturn(OWM_VALID_JSON);
-    site.setProcessorClassName("com.kanaa.cwapi.owm.OWMProcessor");
+    site.setProcessorClassName("com.kanaa.cwapi.web.owm.OWMProcessor");
     testClassWeather();
     getTemp(24);
     getPressurePa(1015);
@@ -62,7 +63,7 @@ public class StationTest extends MyTest {
   @Test
   public void getWUWeather() throws Exception {
     when(ctx.getAnswer(anyString())).thenReturn(WU_VALID_JSON);
-    site.setProcessorClassName("com.kanaa.cwapi.wu.WUProcessor");
+    site.setProcessorClassName("com.kanaa.cwapi.web.wu.WUProcessor");
     testClassWeather();
     getTemp(20.7);
     getPressurePa(1004);

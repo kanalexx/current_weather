@@ -1,6 +1,7 @@
 package com.kanaa.cwapi;
 
 import com.kanaa.cwapi.common.*;
+import com.kanaa.cwapi.web.Site;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 

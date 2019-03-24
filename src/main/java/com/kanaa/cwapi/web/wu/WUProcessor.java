@@ -1,6 +1,7 @@
-package com.kanaa.cwapi.wu;
+package com.kanaa.cwapi.web.wu;
 
 import com.kanaa.cwapi.common.*;
+import com.kanaa.cwapi.web.Processor;
 import org.json.JSONObject;
 
 public class WUProcessor implements Processor {

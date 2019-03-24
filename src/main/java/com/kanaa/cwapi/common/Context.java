@@ -8,6 +8,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Properties;
 
+import com.kanaa.cwapi.web.WebGateway;
 import org.apache.log4j.Logger;
 
 public class Context {

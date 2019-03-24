@@ -1,4 +1,4 @@
-package com.kanaa.cwapi.common;
+package com.kanaa.cwapi.web;
 
 import java.io.*;
 import java.net.HttpURLConnection;

@@ -1,6 +1,6 @@
-package com.kanaa.cwapi.owm;
+package com.kanaa.cwapi.web.owm;
 
-import com.kanaa.cwapi.common.Processor;
+import com.kanaa.cwapi.web.Processor;
 import com.kanaa.cwapi.common.UserException;
 import com.kanaa.cwapi.common.Weather;
 import org.json.JSONObject;

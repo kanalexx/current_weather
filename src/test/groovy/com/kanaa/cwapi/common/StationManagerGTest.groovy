@@ -1,5 +1,6 @@
 package com.kanaa.cwapi.common
 
+import com.kanaa.cwapi.web.Site
 import org.junit.Before
 import org.junit.Test
 

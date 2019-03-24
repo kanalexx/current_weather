@@ -1,5 +1,7 @@
 package com.kanaa.cwapi.common;
 
+import com.kanaa.cwapi.web.Site;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;

@@ -1,4 +1,4 @@
-package com.kanaa.cwapi.wu
+package com.kanaa.cwapi.web.wu
 
 import com.kanaa.cwapi.common.UserException
 import org.junit.Before

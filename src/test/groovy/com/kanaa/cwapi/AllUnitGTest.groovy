@@ -1,8 +1,10 @@
 package com.kanaa.cwapi
 
 import com.kanaa.cwapi.common.*
-import com.kanaa.cwapi.owm.OWMProcessorGTest
-import com.kanaa.cwapi.wu.WUProcessorGTest
+import com.kanaa.cwapi.web.SiteGTest
+import com.kanaa.cwapi.web.WebGatewayGTest
+import com.kanaa.cwapi.web.owm.OWMProcessorGTest
+import com.kanaa.cwapi.web.wu.WUProcessorGTest
 import org.junit.runner.RunWith
 import org.junit.runners.Suite
 

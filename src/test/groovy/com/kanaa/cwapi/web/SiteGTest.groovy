@@ -1,5 +1,8 @@
-package com.kanaa.cwapi.common
+package com.kanaa.cwapi.web
 
+import com.kanaa.cwapi.common.ConstForTest
+import com.kanaa.cwapi.common.Context
+import com.kanaa.cwapi.common.MyTest
 import org.junit.Test
 
 import static org.mockito.Mockito.mock

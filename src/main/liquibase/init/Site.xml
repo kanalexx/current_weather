@@ -10,7 +10,7 @@
             <column name="URL" value="https://openweathermap.org"/>
             <column name="APPID" value="ce93f7bfb9ee94a56b6f0f36743b1227"/>
             <column name="WEATHER_REQUEST" value="http://api.openweathermap.org/data/2.5/weather?units=metric&amp;q={CITYNAME}&amp;APPID={APPID}"/>
-            <column name="PROCESSOR" value="com.kanaa.cwapi.owm.OWMProcessor"/>
+            <column name="PROCESSOR" value="com.kanaa.cwapi.web.owm.OWMProcessor"/>
         </insert>
         <insert tableName="SITE">
             <column name="NAME" value="Weather API - Weather Underground"/>
@@ -18,7 +18,7 @@
             <column name="URL" value="https://www.wunderground.com"/>
             <column name="APPID" value="bf926c867532af8d"/>
             <column name="WEATHER_REQUEST" value="http://api.wunderground.com/api/{APPID}/conditions/q/{CITYNAME}.json"/>
-            <column name="PROCESSOR" value="com.kanaa.cwapi.wu.WUProcessor"/>
+            <column name="PROCESSOR" value="com.kanaa.cwapi.web.wu.WUProcessor"/>
         </insert>
     </changeSet>
 </databaseChangeLog>

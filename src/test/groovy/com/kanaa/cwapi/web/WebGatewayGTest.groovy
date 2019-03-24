@@ -1,4 +1,4 @@
-package com.kanaa.cwapi.common
+package com.kanaa.cwapi.web
 
 import org.json.JSONObject
 import org.junit.Before
@@ -6,7 +6,7 @@ import org.junit.Test
 
 import java.nio.charset.StandardCharsets
 
-import static ConstForTest.*
+import static com.kanaa.cwapi.common.ConstForTest.*
 import static org.mockito.Matchers.any
 import static org.mockito.Matchers.anyString
 import static org.mockito.Mockito.mock

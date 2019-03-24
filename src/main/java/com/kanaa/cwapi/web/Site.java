@@ -1,4 +1,10 @@
-package com.kanaa.cwapi.common;
+package com.kanaa.cwapi.web;
+
+import com.kanaa.cwapi.common.Context;
+import com.kanaa.cwapi.common.DataObject;
+import com.kanaa.cwapi.common.UserException;
+import com.kanaa.cwapi.common.Weather;
+import com.kanaa.cwapi.common.WebSite;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -7,7 +13,7 @@ import java.sql.SQLException;
 
 import java.io.IOException;
 
-public class Site extends DataObject {
+public class Site extends DataObject implements WebSite {
 
   public static final String APPID_URL_PART = "{APPID}";
   public static final String CITYNAME_URL_PART = "{CITYNAME}";
@@ -87,6 +93,7 @@ public class Site extends DataObject {
     this.processorClassName = processorClassName;
   }
 
+  @Override
   public Weather getWeather(String cityName) throws IOException, UserException {
     String answer = ctx.getAnswer(getUrlCity(cityName));
     try {
