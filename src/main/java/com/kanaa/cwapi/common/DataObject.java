@@ -2,6 +2,11 @@ package com.kanaa.cwapi.common;
 
 import org.apache.log4j.Logger;
 
+/**
+ * Объект данных
+ * Объект данных может сохранять/загружать свое состояние из разного рода хранилища данных.
+ * Обмен с конкретным типом хранилища производится посредством
+ */
 public class DataObject {
 
   private static final String STRING_FMT = "[%s %s]";
@@ -9,9 +14,11 @@ public class DataObject {
   protected static final Logger log = Logger.getLogger(DataObject.class);
   protected Context ctx;
   protected Long id;
+  protected DataMapper dataMapper;
 
   public DataObject(Context ctx) {
     this.ctx = ctx;
+    dataMapper = ctx.getDataMapper();
   }
 
   public Long getId() {
@@ -40,5 +47,17 @@ public class DataObject {
 
   protected String getFieldsStringValues() {
     return "id=" + id;
+  }
+
+  public void save() {
+    if (id != null) {
+      dataMapper.update(this);
+    } else {
+      dataMapper.insert(this);
+    }
+  }
+
+  public void load(Long id) {
+    dataMapper.load(this, id);
   }
 }
