@@ -27,12 +27,12 @@ public class App {
     Map<String, WebSite> sites = new HashMap<>();
     try {
       Site owmSite = new Site(ctx);
-      owmSite.find(1L);
+//      owmSite.find(1L);
       sites.put("OWM", owmSite);
       Site wuSite = new Site(ctx);
-      wuSite.find(2L);
+//      wuSite.find(2L);
       sites.put("WU", wuSite);
-    } catch (SQLException | UserException e) {
+    } catch (Exception e) {
       log.error(e);
     }
     StationManager stationManager = new StationManager(sites);
