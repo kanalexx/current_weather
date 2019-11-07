@@ -38,9 +38,4 @@ public class Context {
   public String getAnswer(String request) throws IOException {
     return getWebConnection().getAnswer(request);
   }
-
-  public DataMapper getDataMapper() {
-    //todo: инициализация мапера должна происходить в соответствии с настройкой системы
-    return new SimpleDataMapper();
-  }
 }

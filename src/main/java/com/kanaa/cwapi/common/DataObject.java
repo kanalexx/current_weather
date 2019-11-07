@@ -7,7 +7,7 @@ import org.apache.log4j.Logger;
  * Объект данных может сохранять/загружать свое состояние из разного рода хранилища данных.
  * Обмен с конкретным типом хранилища производится посредством
  */
-public class DataObject {
+public abstract class DataObject {
 
   private static final String STRING_FMT = "[%s %s]";
 
@@ -16,10 +16,15 @@ public class DataObject {
   protected Long id;
   protected DataMapper dataMapper;
 
-  public DataObject(Context ctx) {
+  public DataObject(Context ctx) throws UserException {
     this.ctx = ctx;
-    dataMapper = ctx.getDataMapper();
+    dataMapper = getDataMapper();
   }
+
+  /**
+   * Получить преобразователь данных
+   */
+  protected abstract DataMapper getDataMapper() throws UserException;
 
   public Long getId() {
     return id;

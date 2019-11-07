@@ -6,7 +6,7 @@ public class UserException extends Exception {
     super(message);
   }
 
-  public UserException(Throwable cause) {
+  public UserException(String s, Throwable cause) {
     super(cause);
   }
 }
