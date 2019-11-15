@@ -10,6 +10,7 @@ import org.junit.runners.Suite
 
 @RunWith(Suite.class)
 @Suite.SuiteClasses([
+    DataObjectFactoryTest.class,
     WebGatewayGTest.class,
     SiteGTest.class,
     OWMProcessorGTest.class,

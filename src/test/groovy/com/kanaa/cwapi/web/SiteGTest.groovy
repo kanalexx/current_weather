@@ -8,15 +8,14 @@ import org.junit.Test
 import static org.mockito.Mockito.mock
 
 class SiteGTest extends MyTest {
-  private Context ctx = mock Context.class
 
     @Test
     void testEquals() {
-      Site wuSite1 = new Site(ctx)
+      Site wuSite1 = new Site()
       wuSite1.setId(1);
-      Site owmSite1 = new Site(ctx)
+      Site owmSite1 = new Site()
       owmSite1.setId(2);
-      Site wuSite2 = new Site(ctx)
+      Site wuSite2 = new Site()
       wuSite2.setId(1);
 
       assert wuSite1 == wuSite2
@@ -25,7 +24,7 @@ class SiteGTest extends MyTest {
 
   @Test
   void testGetUrlCity() throws Exception {
-    Site site = new Site(ctx)
+    Site site = new Site()
     site.weatherRequest = "http://api.openweathermap.org/data/2.5/weather?units=metric&q=${Site.CITYNAME_URL_PART}&APPID=${Site.APPID_URL_PART}"
     site.appId = 'ce93f7bfb9ee94a56b6f0f36743b1227'
 

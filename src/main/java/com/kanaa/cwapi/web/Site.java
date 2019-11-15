@@ -1,13 +1,11 @@
 package com.kanaa.cwapi.web;
 
-import com.kanaa.cwapi.common.*;
-
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-
 import java.io.IOException;
+import com.kanaa.cwapi.common.DataMapper;
+import com.kanaa.cwapi.common.DataObject;
+import com.kanaa.cwapi.common.UserException;
+import com.kanaa.cwapi.common.Weather;
+import com.kanaa.cwapi.common.WebSite;
 
 public class Site extends DataObject implements WebSite {
 
@@ -21,9 +19,6 @@ public class Site extends DataObject implements WebSite {
   private String weatherRequest;
   private String processorClassName;
 
-  public Site(Context ctx) throws UserException {
-    super(ctx);
-  }
 
   @Override
   protected DataMapper getDataMapper() throws UserException {

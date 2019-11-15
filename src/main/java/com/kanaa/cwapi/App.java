@@ -25,11 +25,12 @@ public class App {
 
     BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     Map<String, WebSite> sites = new HashMap<>();
+    DataObjectFactory dataObjectFactory = ctx.getDataObjectFactory();
     try {
-      Site owmSite = new Site(ctx);
+      Site owmSite = dataObjectFactory.newDataObject(Site.class);
 //      owmSite.find(1L);
       sites.put("OWM", owmSite);
-      Site wuSite = new Site(ctx);
+      Site wuSite = dataObjectFactory.newDataObject(Site.class);
 //      wuSite.find(2L);
       sites.put("WU", wuSite);
     } catch (Exception e) {

@@ -19,7 +19,8 @@ public class StationTest extends MyTest {
   @Before
   public void setUp() throws Exception {
     ctx = mock(Context.class);
-    site = new Site(ctx);
+    site = new Site();
+    site.init(ctx, mock(DataMapper.class));
     site.setWeatherRequest(Site.APPID_URL_PART + Site.CITYNAME_URL_PART);
     site.setAppId("");
   }

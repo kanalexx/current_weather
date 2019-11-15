@@ -5,15 +5,18 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
+import com.kanaa.cwapi.common.dofactory.DataObjectFactoryImpl;
 import com.kanaa.cwapi.web.WebGateway;
 import org.apache.log4j.Logger;
 
 public class Context {
   private static final Logger log = Logger.getLogger(Context.class);
   private WebGateway webConnection;
+  private DataObjectFactory dataObjectFactory;
 
   public Context() throws IOException {
     webConnection = new WebGateway();
+    dataObjectFactory = new DataObjectFactoryImpl(this);
     Properties properties;
     try {
       properties = getProperties();
@@ -37,5 +40,9 @@ public class Context {
 
   public String getAnswer(String request) throws IOException {
     return getWebConnection().getAnswer(request);
+  }
+
+  public DataObjectFactory getDataObjectFactory() {
+    return dataObjectFactory;
   }
 }

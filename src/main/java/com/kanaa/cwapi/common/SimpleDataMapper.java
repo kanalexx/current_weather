@@ -3,7 +3,7 @@ package com.kanaa.cwapi.common;
 /**
  * Заглушка для преобразователя данных
  */
-public abstract class SimpleDataMapper implements DataMapper {
+public class SimpleDataMapper implements DataMapper {
 
   protected DataObject dataObject;
   protected DataMap dataMap;
