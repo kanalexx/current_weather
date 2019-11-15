@@ -1,6 +1,7 @@
 package com.kanaa.cwapi
 
 import com.kanaa.cwapi.common.*
+import com.kanaa.cwapi.web.SiteDictionaryTest
 import com.kanaa.cwapi.web.SiteGTest
 import com.kanaa.cwapi.web.WebGatewayGTest
 import com.kanaa.cwapi.web.owm.OWMProcessorGTest
@@ -10,13 +11,14 @@ import org.junit.runners.Suite
 
 @RunWith(Suite.class)
 @Suite.SuiteClasses([
-    DataObjectFactoryTest.class,
+    // web
     WebGatewayGTest.class,
     SiteGTest.class,
     OWMProcessorGTest.class,
     WUProcessorGTest.class,
-    SiteGTest.class,
-
+    SiteDictionaryTest.class,
+    // common
+    DataObjectFactoryTest.class,
     UStationGTest.class,
     StationManagerGTest.class,
 ])

@@ -2,6 +2,7 @@ package com.kanaa.cwapi;
 
 import com.kanaa.cwapi.common.*;
 import com.kanaa.cwapi.web.Site;
+import com.kanaa.cwapi.web.SiteDictionary;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 
@@ -26,7 +27,9 @@ public class App {
     BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     Map<String, WebSite> sites = new HashMap<>();
     DataObjectFactory dataObjectFactory = ctx.getDataObjectFactory();
+    SiteDictionary siteDict = new SiteDictionary();
     try {
+      siteDict.load(ctx);
       Site owmSite = dataObjectFactory.newDataObject(Site.class);
 //      owmSite.find(1L);
       sites.put("OWM", owmSite);

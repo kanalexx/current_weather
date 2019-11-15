@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+  Атрибут WEATHER_REQUEST представляет собой шаблон строки запроса погоды в указнном городе.
+  Поддерживает макро-вставки:
+  - {CITYNAME} - название города, в котором определяется погода
+  - {APPID} - сервисный ключ, выдаваемый при регистрации на сервисе поставщика данных о погоде
+-->
+<SITE>
+  <SITE ID="1"
+        NAME="Weather API - OpenWeatherMap"
+        SHORT_NAME="OWM"
+        URL="https://openweathermap.org"
+        APPID="ce93f7bfb9ee94a56b6f0f36743b1227"
+        WEATHER_REQUEST="http://api.openweathermap.org/data/2.5/weather?units=metric&amp;q={CITYNAME}&amp;APPID={APPID}"
+        PROCESSOR="com.kanaa.cwapi.web.owm.OWMProcessor"/>
+  <SITE ID="2"
+        NAME="Weather API - Weather Underground"
+        SHORT_NAME="WU"
+        URL="https://www.wunderground.com"
+        APPID="bf926c867532af8d"
+        WEATHER_REQUEST="http://api.wunderground.com/api/{APPID}/conditions/q/{CITYNAME}.json"
+        PROCESSOR="com.kanaa.cwapi.web.wu.WUProcessor"/>
+</SITE>
