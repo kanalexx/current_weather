@@ -30,10 +30,10 @@ public class App {
     SiteDictionary siteDict = new SiteDictionary();
     try {
       siteDict.load(ctx);
-      Site owmSite = dataObjectFactory.newDataObject(Site.class);
+      Site owmSite = siteDict.getByShortName("OWM");
 //      owmSite.find(1L);
       sites.put("OWM", owmSite);
-      Site wuSite = dataObjectFactory.newDataObject(Site.class);
+      Site wuSite = siteDict.getByShortName("WU");
 //      wuSite.find(2L);
       sites.put("WU", wuSite);
     } catch (Exception e) {
