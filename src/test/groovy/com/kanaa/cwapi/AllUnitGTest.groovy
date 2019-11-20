@@ -5,6 +5,7 @@ import com.kanaa.cwapi.web.SiteDictionaryTest
 import com.kanaa.cwapi.web.SiteGTest
 import com.kanaa.cwapi.web.WebGatewayGTest
 import com.kanaa.cwapi.web.owm.OWMProcessorGTest
+import com.kanaa.cwapi.web.wb.WBProcessorTest
 import com.kanaa.cwapi.web.wu.WUProcessorGTest
 import org.junit.runner.RunWith
 import org.junit.runners.Suite
@@ -16,6 +17,7 @@ import org.junit.runners.Suite
     SiteGTest.class,
     OWMProcessorGTest.class,
     WUProcessorGTest.class,
+    WBProcessorTest.class,
     SiteDictionaryTest.class,
     // common
     DataObjectFactoryTest.class,

@@ -31,11 +31,11 @@ public class App {
     try {
       siteDict.load(ctx);
       Site owmSite = siteDict.getByShortName("OWM");
-//      owmSite.find(1L);
       sites.put("OWM", owmSite);
       Site wuSite = siteDict.getByShortName("WU");
-//      wuSite.find(2L);
       sites.put("WU", wuSite);
+      Site wbSite = siteDict.getByShortName("WB");
+      sites.put("WB", wbSite);
     } catch (Exception e) {
       log.error(e);
     }
@@ -43,7 +43,7 @@ public class App {
     String siteName;
     String cityName;
     do {
-      log.info("Введите сайт (OWM, WU):");
+      log.info("Введите сайт (OWM, WU, WB):");
       siteName = br.readLine();
       log.info("Введите название города:");
       cityName = br.readLine();

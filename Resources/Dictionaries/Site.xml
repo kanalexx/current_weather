@@ -20,4 +20,11 @@
         APPID="bf926c867532af8d"
         WEATHER_REQUEST="http://api.wunderground.com/api/{APPID}/conditions/q/{CITYNAME}.json"
         PROCESSOR="com.kanaa.cwapi.web.wu.WUProcessor"/>
+  <SITE ID="3"
+        NAME="Weather API - WeatherBit.io"
+        SHORT_NAME="WB"
+        URL="https://www.weatherbit.io/"
+        APPID="93b3ba408ae547fea2981b6878a1ae57"
+        WEATHER_REQUEST="https://api.weatherbit.io/v2.0/current?city={CITYNAME}&amp;key={APPID}"
+        PROCESSOR="com.kanaa.cwapi.web.wb.WBProcessor"/>
 </SITE>

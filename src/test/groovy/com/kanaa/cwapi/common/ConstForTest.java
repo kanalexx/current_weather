@@ -30,6 +30,17 @@ public class ConstForTest {
       "exist\"}}}";
   public static final String WU_INEXACT_CITY_JSON = "{\"response\": {\"results\": [{\"name\": \"Moscow\"}]}}";
 
+  // Констатнты для weatherbit.io
+  public static final String WB_VALID_JSON = "{\"data\":[{\"rh\":62,\"pod\":\"d\",\"lon\":37.61556,\"pres\":1011.8," +
+      "\"timezone\":\"Europe\\/Moscow\",\"ob_time\":\"2019-11-20 13:06\",\"country_code\":\"RU\",\"clouds\":14," +
+      "\"ts\":1574255160,\"solar_rad\":4.7,\"state_code\":\"48\",\"city_name\":\"Moscow\",\"wind_spd\":0.89," +
+      "\"last_ob_time\":\"2019-11-20T13:06:00\",\"wind_cdir_full\":\"south\",\"wind_cdir\":\"S\",\"slp\":1027.5," +
+      "\"vis\":5,\"h_angle\":90,\"sunset\":\"13:15\",\"dni\":44.04,\"dewpt\":-4.8,\"snow\":0,\"uv\":2.40774," +
+      "\"precip\":0,\"wind_dir\":180,\"sunrise\":\"05:14\",\"ghi\":4.69,\"dhi\":10.97,\"aqi\":30,\"lat\":55.75222," +
+      "\"weather\":{\"icon\":\"c02d\",\"code\":\"801\",\"description\":\"Few clouds\"},\"datetime\":\"2019-11-20:13\"," +
+      "\"temp\":1.7,\"station\":\"E8051\",\"elev_angle\":0.74,\"app_temp\":1.3}],\"count\":1}";
+  public static final String WB_INVALID_APPID_JSON = "{\"error\":\"API key not valid, or not yet activated.\"}";
+
   @Test
   public void test() throws Exception {
 
